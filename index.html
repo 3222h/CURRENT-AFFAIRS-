@@ -19,7 +19,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent; /* Removes default blue tap highlight on mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -72,6 +72,7 @@
             max-width: 1000px;
             padding: 3rem 2rem;
             z-index: 1;
+            flex-grow: 1;
         }
 
         header {
@@ -110,7 +111,7 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            font-size: 16px; /* 16px prevents automatic zoom on iOS devices */
+            font-size: 16px; 
             outline: none;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -134,7 +135,7 @@
             margin-bottom: 4rem;
         }
 
-        /* Glassmorphism Cards with Mouse/Touch Glow */
+        /* Glassmorphism Cards */
         .month-card {
             position: relative;
             background: var(--card-bg);
@@ -149,7 +150,11 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             overflow: hidden;
-            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, opacity 0.3s ease;
+        }
+
+        .month-card.unavailable {
+            opacity: 0.75;
         }
 
         .month-card::before {
@@ -159,7 +164,6 @@
             left: 0;
             right: 0;
             bottom: 0;
-            /* Default position for desktop, dynamically updated via JS */
             background: radial-gradient(
                 800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
                 rgba(255, 255, 255, 0.08),
@@ -170,11 +174,8 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Desktop Hover Effects */
         @media (hover: hover) {
-            .month-card:hover::before {
-                opacity: 1;
-            }
+            .month-card:hover::before { opacity: 1; }
             .month-card:hover {
                 transform: translateY(-4px);
                 border-color: rgba(255, 255, 255, 0.3);
@@ -186,22 +187,39 @@
             }
         }
 
-        /* Mobile Touch Effects */
         .month-card:active,
         .month-card.touch-active {
-            transform: scale(0.95); /* Satisfying "press in" effect on mobile */
+            transform: scale(0.95);
             border-color: var(--accent-glow);
         }
-        .month-card.touch-active::before {
-            opacity: 1;
+        
+        .month-card.touch-active::before { opacity: 1; }
+
+        .card-content-wrapper {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            pointer-events: none;
         }
 
         .card-content {
-            position: relative;
-            z-index: 1;
             font-size: 1.25rem;
             font-weight: 600;
-            pointer-events: none;
+        }
+
+        /* Coming Soon Badge */
+        .badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-glow);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            width: fit-content;
         }
 
         .card-icon {
@@ -227,7 +245,18 @@
             stroke-linejoin: round;
         }
 
-        /* Footer */
+        /* No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            display: none; /* Hidden by default */
+        }
+
+        .hidden { display: none !important; }
+
         footer {
             width: 100%;
             text-align: center;
@@ -235,6 +264,7 @@
             border-top: 1px solid var(--card-border);
             color: var(--text-muted);
             font-size: 1rem;
+            margin-top: auto;
         }
 
         .author-name {
@@ -244,18 +274,11 @@
             letter-spacing: 0.05em;
         }
 
-        /* Ensuring bold text styling is highly visible */
         .author-name strong {
             font-weight: 900;
             font-size: 1.1em;
         }
 
-        /* Hide items that don't match search */
-        .hidden {
-            display: none !important;
-        }
-
-        /* Responsive */
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
             .dashboard-container { padding: 2rem 1.5rem; }
@@ -265,7 +288,6 @@
 </head>
 <body>
 
-    <!-- Animated Background Elements -->
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
 
@@ -275,75 +297,98 @@
             <p class="subtitle">Quick revision modules and study materials</p>
         </header>
 
-        <!-- Interactive Search Bar -->
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="Search for a month (e.g., March)...">
         </div>
 
-        <!-- Month Grid -->
         <main class="month-grid" id="monthGrid">
+            <div id="noResults" class="no-results">No months match your search.</div>
             <!-- Cards are generated via JavaScript -->
         </main>
-
-        <footer>
-            Developer:  <span class="author-name"><strong>ASHUTOSH SINGH</strong></span>
-        </footer>
     </div>
 
+    <footer>
+        Developer: <span class="author-name"><strong>ASHUTOSH SINGH</strong></span>
+    </footer>
+
     <script>
-        // Array of months to populate the grid dynamically
-        const months = [
-            "January", "February", "March", "April", 
-            "May", "June", "July", "August", 
-            "September", "October", "November", "December"
+        // Array of months with an 'available' flag. 
+        // Change available to 'true' when you create that month's page.
+        const monthsData = [
+            { name: "January", available: true },
+            { name: "February", available: true },
+            { name: "March", available: false },
+            { name: "April", available: false },
+            { name: "May", available: false },
+            { name: "June", available: false },
+            { name: "July", available: false },
+            { name: "August", available: false },
+            { name: "September", available: false },
+            { name: "October", available: false },
+            { name: "November", available: false },
+            { name: "December", available: false }
         ];
 
         const grid = document.getElementById('monthGrid');
         const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
 
-        // SVG Icon for the cards
         const arrowIcon = `
             <svg viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
         `;
+        const lockIcon = `
+            <svg viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0110 0v4"></path>
+            </svg>
+        `;
 
         // Function to create and render cards
         function renderCards() {
-            months.forEach(month => {
+            monthsData.forEach(month => {
                 const a = document.createElement('a');
-                a.href = month.toLowerCase() + '.html';
-                a.className = 'month-card';
-                a.dataset.month = month.toLowerCase(); 
+                // If available, route to month.html, else route to coming-soon.html
+                a.href = month.available ? month.name.toLowerCase() + '.html' : 'coming-soon.html';
+                a.className = `month-card ${month.available ? '' : 'unavailable'}`;
+                a.dataset.month = month.name.toLowerCase(); 
                 
                 a.innerHTML = `
-                    <span class="card-content">${month}</span>
-                    <div class="card-icon">${arrowIcon}</div>
+                    <div class="card-content-wrapper">
+                        <span class="card-content">${month.name}</span>
+                        ${!month.available ? '<span class="badge">Coming Soon</span>' : ''}
+                    </div>
+                    <div class="card-icon">${month.available ? arrowIcon : lockIcon}</div>
                 `;
                 
                 grid.appendChild(a);
             });
         }
 
-        // Initialize cards
         renderCards();
 
-        // 1. Live Search Filter Logic
+        // Live Search Filter Logic
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             const cards = document.querySelectorAll('.month-card');
+            let visibleCount = 0;
 
             cards.forEach(card => {
                 const monthName = card.dataset.month;
                 if (monthName.includes(searchTerm)) {
                     card.classList.remove('hidden');
+                    visibleCount++;
                 } else {
                     card.classList.add('hidden');
                 }
             });
+
+            // Show "No Results" message if no cards are visible
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
         });
 
-        // 2. Mouse Tracking Glow Effect (Desktop)
+        // Mouse Tracking Glow Effect (Desktop)
         grid.addEventListener('mousemove', e => {
             const cards = document.querySelectorAll('.month-card');
             for(const card of cards) {
@@ -355,33 +400,25 @@
             }
         });
 
-        // 3. Touch Tracking Glow & Scale Effect (Mobile / Phone Users)
+        // Touch Tracking Glow & Scale Effect (Mobile)
         grid.addEventListener('touchstart', e => {
-            // Find if a month card was touched
             const card = e.target.closest('.month-card');
             if (card) {
                 const touch = e.touches[0];
                 const rect = card.getBoundingClientRect();
-                
-                // Calculate exact touch point to center the glow on the user's finger
                 const x = touch.clientX - rect.left;
                 const y = touch.clientY - rect.top;
-                
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
-                
-                // Add the active class to trigger the scale-down animation and glow
                 card.classList.add('touch-active');
             }
         }, {passive: true});
 
-        // Remove touch effect when finger is lifted
         grid.addEventListener('touchend', e => {
             const cards = document.querySelectorAll('.month-card');
             cards.forEach(c => c.classList.remove('touch-active'));
         });
         
-        // Failsafe: Remove touch effect if touch is interrupted (e.g., scrolling)
         grid.addEventListener('touchcancel', e => {
             const cards = document.querySelectorAll('.month-card');
             cards.forEach(c => c.classList.remove('touch-active'));
