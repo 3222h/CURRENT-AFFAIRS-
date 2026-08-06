@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Speedy One Liners | Study Portal</title>
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --accent-glow: #38bdf8;
+            --accent-secondary: #818cf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent; /* Removes default blue tap highlight on mobile */
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Blobs */
+        .bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 20s infinite alternate linear;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-glow);
+            top: -100px;
+            left: -100px;
+        }
+
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-secondary);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 150px) rotate(45deg); }
+        }
+
+        /* Main Container */
+        .dashboard-container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 3rem 2rem;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            background: linear-gradient(to right, #fff, var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* Search / Filter Bar */
+        .search-container {
+            margin: 0 auto 3rem auto;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            font-size: 16px; /* 16px prevents automatic zoom on iOS devices */
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Grid Layout */
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Glassmorphism Cards with Mouse/Touch Glow */
+        .month-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            overflow: hidden;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
+        }
+
+        .month-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Default position for desktop, dynamically updated via JS */
+            background: radial-gradient(
+                800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(255, 255, 255, 0.08),
+                transparent 40%
+            );
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Desktop Hover Effects */
+        @media (hover: hover) {
+            .month-card:hover::before {
+                opacity: 1;
+            }
+            .month-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+            .month-card:hover .card-icon {
+                background: var(--accent-glow);
+                color: #000;
+                transform: translateX(4px);
+            }
+        }
+
+        /* Mobile Touch Effects */
+        .month-card:active,
+        .month-card.touch-active {
+            transform: scale(0.95); /* Satisfying "press in" effect on mobile */
+            border-color: var(--accent-glow);
+        }
+        .month-card.touch-active::before {
+            opacity: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+            font-size: 1.25rem;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .card-icon {
+            position: relative;
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .card-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .author-name {
+            background: linear-gradient(to right, var(--accent-glow), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.05em;
+        }
+
+        /* Ensuring bold text styling is highly visible */
+        .author-name strong {
+            font-weight: 900;
+            font-size: 1.1em;
+        }
+
+        /* Hide items that don't match search */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .dashboard-container { padding: 2rem 1.5rem; }
+            .month-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background Elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <div class="dashboard-container">
+        <header>
+            <h1>Speedy One Liners</h1>
+            <p class="subtitle">Quick revision modules and study materials</p>
+        </header>
+
+        <!-- Interactive Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for a month (e.g., March)...">
+        </div>
+
+        <!-- Month Grid -->
+        <main class="month-grid" id="monthGrid">
+            <!-- Cards are generated via JavaScript -->
+        </main>
+
+        <footer>
+            Developer:  <span class="author-name"><strong>ASHUTOSH SINGH</strong></span>
+        </footer>
+    </div>
+
+    <script>
+        // Array of months to populate the grid dynamically
+        const months = [
+            "January", "February", "March", "April", 
+            "May", "June", "July", "August", 
+            "September", "October", "November", "December"
+        ];
+
+        const grid = document.getElementById('monthGrid');
+        const searchInput = document.getElementById('searchInput');
+
+        // SVG Icon for the cards
+        const arrowIcon = `
+            <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        `;
+
+        // Function to create and render cards
+        function renderCards() {
+            months.forEach(month => {
+                const a = document.createElement('a');
+                a.href = month.toLowerCase() + '.html';
+                a.className = 'month-card';
+                a.dataset.month = month.toLowerCase(); 
+                
+                a.innerHTML = `
+                    <span class="card-content">${month}</span>
+                    <div class="card-icon">${arrowIcon}</div>
+                `;
+                
+                grid.appendChild(a);
+            });
+        }
+
+        // Initialize cards
+        renderCards();
+
+        // 1. Live Search Filter Logic
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.month-card');
+
+            cards.forEach(card => {
+                const monthName = card.dataset.month;
+                if (monthName.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+
+        // 2. Mouse Tracking Glow Effect (Desktop)
+        grid.addEventListener('mousemove', e => {
+            const cards = document.querySelectorAll('.month-card');
+            for(const card of cards) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            }
+        });
+
+        // 3. Touch Tracking Glow & Scale Effect (Mobile / Phone Users)
+        grid.addEventListener('touchstart', e => {
+            // Find if a month card was touched
+            const card = e.target.closest('.month-card');
+            if (card) {
+                const touch = e.touches[0];
+                const rect = card.getBoundingClientRect();
+                
+                // Calculate exact touch point to center the glow on the user's finger
+                const x = touch.clientX - rect.left;
+                const y = touch.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                // Add the active class to trigger the scale-down animation and glow
+                card.classList.add('touch-active');
+            }
+        }, {passive: true});
+
+        // Remove touch effect when finger is lifted
+        grid.addEventListener('touchend', e => {
+            const cards = document.querySelectorAll('.month-card');
+            cards.forEach(c => c.classList.remove('touch-active'));
+        });
+        
+        // Failsafe: Remove touch effect if touch is interrupted (e.g., scrolling)
+        grid.addEventListener('touchcancel', e => {
+            const cards = document.querySelectorAll('.month-card');
+            cards.forEach(c => c.classList.remove('touch-active'));
+        });
+    </script>
+</body>
+</html>
