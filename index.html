@@ -308,14 +308,11 @@
     </div>
 
 <footer>
-Developer: <span class="author-name"><strong><a href="https://github.com/3222h/" target="_blank" rel="noopener noreferrer">ASHUTOSH SINGH</a></strong></span>
+    Developer: <span class="author-name"><strong><a href="https://github.com/3222h/" target="_blank" rel="noopener noreferrer">ASHUTOSH SINGH</a></strong></span>
 </footer>
-
-
 
     <script>
         // Array of months with an 'available' flag. 
-        // Change available to 'true' when you create that month's page.
         const monthsData = [
             { name: "January", available: false },
             { name: "February", available: false },
@@ -330,6 +327,14 @@ Developer: <span class="author-name"><strong><a href="https://github.com/3222h/"
             { name: "November", available: false },
             { name: "December", available: false }
         ];
+
+        // --- NEW ADDITION ---
+        // Automatically sort the array so 'available' months appear at the top
+        monthsData.sort((a, b) => {
+            if (a.available === b.available) return 0;
+            return a.available ? -1 : 1;
+        });
+        // --------------------
 
         const grid = document.getElementById('monthGrid');
         const searchInput = document.getElementById('searchInput');
