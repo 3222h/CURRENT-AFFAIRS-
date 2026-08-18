@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Speedy One Liners | Study Portal</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Speedy One Liners · Study Portal</title>
+    <meta name="description" content="Quick, exam-ready revision one-liners by month — built for fast recall." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
-        :root {
-            --bg-base: #0f172a;
-            --accent-glow: #38bdf8;
-            --accent-secondary: #818cf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --card-bg: rgba(30, 41, 59, 0.5);
-            --card-border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
+        /* ─── Reset & Variables ─── */
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
 
+        :root {
+            --bg-base: #0b1120;
+            --bg-card: rgba(17, 25, 45, 0.55);
+            --bg-card-hover: rgba(25, 40, 70, 0.75);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-glow: rgba(251, 191, 36, 0.25);
+            --text-main: #f1f5f9;
+            --text-muted: #8896b0;
+            --text-dim: #5a6a85;
+            --accent-primary: #fbbf24;
+            --accent-secondary: #f59e0b;
+            --accent-gradient: linear-gradient(135deg, #fbbf24, #f59e0b);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.50);
+            --radius-card: 18px;
+            --radius-pill: 50px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-base);
+            font-family: var(--font);
+            background: var(--bg-base);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -32,404 +52,894 @@
             align-items: center;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.6;
         }
 
-        /* Animated Background Blobs */
+        /* ─── Animated Background Glow Blobs (Yellow) ─── */
         .bg-shape {
             position: fixed;
             border-radius: 50%;
-            filter: blur(120px);
-            z-index: -1;
-            opacity: 0.4;
-            animation: float 20s infinite alternate linear;
+            filter: blur(140px);
+            z-index: 0;
+            opacity: 0.30;
+            animation: float 28s infinite alternate ease-in-out;
+            pointer-events: none;
         }
 
         .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--accent-glow);
-            top: -100px;
-            left: -100px;
+            width: 520px;
+            height: 520px;
+            background: var(--accent-primary);
+            top: -180px;
+            left: -140px;
         }
 
         .shape-2 {
-            width: 500px;
-            height: 500px;
+            width: 580px;
+            height: 580px;
             background: var(--accent-secondary);
-            bottom: -150px;
-            right: -100px;
-            animation-delay: -5s;
+            bottom: -220px;
+            right: -160px;
+            animation-delay: -8s;
+        }
+
+        .shape-3 {
+            width: 360px;
+            height: 360px;
+            background: #fcd34d;
+            top: 45%;
+            left: 55%;
+            animation-delay: -14s;
+            opacity: 0.12;
         }
 
         @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(100px, 150px) rotate(45deg); }
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translate(60px, 100px) rotate(12deg) scale(1.05);
+            }
+            100% {
+                transform: translate(-40px, 160px) rotate(24deg) scale(0.95);
+            }
         }
 
-        /* Main Container */
-        .dashboard-container {
+        /* ─── Layout ─── */
+        .app-wrapper {
             width: 100%;
-            max-width: 1000px;
-            padding: 3rem 2rem;
+            max-width: 1200px;
+            padding: 2rem 1.5rem 1rem;
             z-index: 1;
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
+        /* ─── Header ─── */
+        .app-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 2rem;
         }
 
-        h1 {
-            font-size: 3rem;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #0b1120;
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.35);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.6rem;
             font-weight: 800;
-            letter-spacing: -0.05em;
-            background: linear-gradient(to right, #fff, var(--accent-glow));
+            letter-spacing: -0.04em;
+            background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            background-clip: text;
         }
 
-        .subtitle {
+        .brand-tagline {
+            font-size: 0.78rem;
             color: var(--text-muted);
-            font-size: 1.1rem;
             font-weight: 400;
+            -webkit-text-fill-color: var(--text-muted);
         }
 
-        /* Search / Filter Bar */
-        .search-container {
-            margin: 0 auto 3rem auto;
-            max-width: 500px;
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-badge {
+            background: rgba(251, 191, 36, 0.10);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        /* ─── Stats Row ─── */
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .stat-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-number.accent {
+            color: var(--accent-primary);
+        }
+        .stat-number.secondary {
+            color: var(--accent-secondary);
+        }
+        .stat-number.locked {
+            color: var(--text-dim);
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 28px;
+            background: var(--border-subtle);
+            flex-shrink: 0;
+        }
+
+        /* ─── Search Bar Only ─── */
+        .search-wrap {
+            max-width: 420px;
+            width: 100%;
+            margin: 0 0 2rem 0;
             position: relative;
         }
 
-        .search-input {
+        .search-wrap .search-input {
             width: 100%;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            border-radius: var(--radius-pill);
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
             color: var(--text-main);
-            font-size: 16px; 
+            font-family: var(--font);
+            font-size: 0.95rem;
             outline: none;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: var(--transition);
         }
 
-        .search-input:focus {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        .search-wrap .search-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.20), 0 0 30px rgba(251, 191, 36, 0.06);
         }
 
-        .search-input::placeholder {
-            color: var(--text-muted);
+        .search-wrap .search-input::placeholder {
+            color: var(--text-dim);
         }
 
-        /* Grid Layout */
+        .search-wrap .search-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            pointer-events: none;
+            font-size: 1rem;
+        }
+
+        .search-wrap .clear-btn {
+            position: absolute;
+            right: 0.7rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.2rem 0.4rem;
+            border-radius: 50%;
+            display: none;
+            transition: var(--transition);
+        }
+
+        .search-wrap .clear-btn:hover {
+            color: var(--text-main);
+        }
+
+        .search-wrap .clear-btn.visible {
+            display: block;
+        }
+
+        /* ─── Month Grid ─── */
         .month-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* Glassmorphism Cards */
+        /* ─── Cards with Mouse-Follow Glow (Yellow) ─── */
         .month-card {
             position: relative;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 1.5rem 1.25rem;
             text-decoration: none;
             color: var(--text-main);
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 0.5rem;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             overflow: hidden;
-            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, opacity 0.3s ease;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                opacity 0.4s ease;
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+            min-height: 130px;
         }
 
-        .month-card.unavailable {
-            opacity: 0.75;
-        }
-
+        /* ─── The Yellow Glow ─── */
         .month-card::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(
-                800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                rgba(255, 255, 255, 0.08),
-                transparent 40%
-            );
+            inset: 0;
+            background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(251, 191, 36, 0.15),
+                    rgba(245, 158, 11, 0.08),
+                    transparent 50%);
             z-index: 0;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+            border-radius: inherit;
         }
 
+        /* Glow ring accent on the card border */
+        .month-card::after {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(251, 191, 36, 0.30),
+                    transparent 55%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .month-card .card-inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            flex: 1;
+        }
+
+        .month-card .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .month-card .card-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .month-card .card-badge {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 700;
+            padding: 0.2rem 0.7rem;
+            border-radius: var(--radius-pill);
+            background: rgba(251, 191, 36, 0.10);
+            color: var(--accent-primary);
+            border: 1px solid rgba(251, 191, 36, 0.12);
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .month-card .card-badge.locked {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-dim);
+            border-color: var(--border-subtle);
+        }
+
+        .month-card .card-action {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            transition: var(--transition);
+        }
+
+        .month-card .card-action .arrow {
+            transition: transform 0.25s ease;
+        }
+
+        .month-card.unavailable .card-action {
+            color: var(--text-dim);
+        }
+
+        /* Hover states — glow activates */
         @media (hover: hover) {
-            .month-card:hover::before { opacity: 1; }
             .month-card:hover {
-                transform: translateY(-4px);
-                border-color: rgba(255, 255, 255, 0.3);
+                transform: translateY(-6px) scale(1.01);
+                border-color: rgba(251, 191, 36, 0.20);
+                box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), 0 0 40px rgba(251, 191, 36, 0.04);
+                background: var(--bg-card-hover);
             }
-            .month-card:hover .card-icon {
-                background: var(--accent-glow);
-                color: #000;
+            .month-card:hover::before {
+                opacity: 1;
+            }
+            .month-card:hover::after {
+                opacity: 1;
+            }
+            .month-card:hover .card-action .arrow {
                 transform: translateX(4px);
+            }
+            .month-card:hover .card-action {
+                color: var(--accent-primary);
             }
         }
 
         .month-card:active,
         .month-card.touch-active {
-            transform: scale(0.95);
-            border-color: var(--accent-glow);
-        }
-        
-        .month-card.touch-active::before { opacity: 1; }
-
-        .card-content-wrapper {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            pointer-events: none;
+            transform: scale(0.96);
+            border-color: var(--accent-primary);
         }
 
-        .card-content {
-            font-size: 1.25rem;
-            font-weight: 600;
+        .month-card.touch-active::before {
+            opacity: 1;
+        }
+        .month-card.touch-active::after {
+            opacity: 1;
         }
 
-        /* Coming Soon Badge */
-        .badge {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent-glow);
-            background: rgba(56, 189, 248, 0.1);
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-weight: 700;
-            width: fit-content;
+        .month-card.hidden {
+            display: none;
         }
 
-        .card-icon {
-            position: relative;
-            z-index: 1;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .card-icon svg {
-            width: 16px;
-            height: 16px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        /* No Results Message */
+        /* ─── No Results ─── */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            display: none; /* Hidden by default */
-        }
-
-        .hidden { display: none !important; }
-
-        footer {
-            width: 100%;
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--card-border);
+            padding: 3.5rem 1.5rem;
             color: var(--text-muted);
             font-size: 1rem;
+            display: none;
+            background: var(--bg-card);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .no-results .emoji {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .no-results .sub {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* ─── Unified Footer Card ─── */
+        .app-footer {
             margin-top: auto;
+            padding: 2rem 0 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .author-name {
-            background: linear-gradient(to right, var(--accent-glow), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.05em;
+        .footer-profile-card {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem 1.5rem;
+            background: rgba(251, 191, 36, 0.06);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            padding: 0.75rem 1.75rem;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+            width: auto;
+            max-width: 100%;
         }
 
-        .author-name strong {
-            font-weight: 900;
-            font-size: 1.1em;
+        .footer-profile-card:hover {
+            background: rgba(251, 191, 36, 0.12);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.08);
+        }
+
+        .dev-info {
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .dev-info .dev-name {
+            color: var(--text-main);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .github-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .github-info svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+        }
+
+        .github-info .gh-handle {
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .github-info .gh-arrow {
+            transition: transform 0.25s ease;
+        }
+
+        .footer-profile-card:hover .gh-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer-divider-pipe {
+            width: 1px;
+            height: 24px;
+            background: var(--border-subtle);
+            flex-shrink: 0;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .app-wrapper {
+                padding: 1.25rem 1rem;
+            }
+
+            .app-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.75rem;
+                padding-bottom: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .brand {
+                justify-content: center;
+            }
+            .brand-name {
+                font-size: 1.4rem;
+            }
+            .header-actions {
+                justify-content: center;
+            }
+
+            .stats-row {
+                justify-content: center;
+                gap: 0.75rem 1.5rem;
+                padding: 0.75rem 1rem;
+            }
+            .stat-divider {
+                display: none;
+            }
+
+            .search-wrap {
+                max-width: 100%;
+                margin: 0 0 1.5rem 0;
+            }
+
+            .month-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            .dashboard-container { padding: 2rem 1.5rem; }
-            .month-grid { grid-template-columns: 1fr; }
+            .footer-profile-card {
+                flex-direction: column;
+                padding: 1rem 1.5rem;
+                border-radius: 16px;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            .footer-divider-pipe {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .month-grid {
+                grid-template-columns: 1fr;
+            }
+            .brand-name {
+                font-size: 1.2rem;
+            }
+            .brand-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            .month-card {
+                padding: 1.25rem 1rem;
+                min-height: 110px;
+            }
+            .month-card .card-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* ─── Utility ─── */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-dim);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-shape shape-1"></div>
-    <div class="bg-shape shape-2"></div>
+    <!-- Background Glow Blobs (Yellow) -->
+    <div class="bg-shape shape-1" aria-hidden="true"></div>
+    <div class="bg-shape shape-2" aria-hidden="true"></div>
+    <div class="bg-shape shape-3" aria-hidden="true"></div>
 
-    <div class="dashboard-container">
-        <header>
-            <h1>Speedy One Liners</h1>
-            <p class="subtitle">Quick revision modules and study materials</p>
+    <div class="app-wrapper">
+        <!-- ─── Header ─── -->
+        <header class="app-header">
+            <a href="#" class="brand" aria-label="Speedy One Liners Home">
+                <span class="brand-icon" aria-hidden="true">⚡</span>
+                <span class="brand-text">
+                    <span class="brand-name">Speedy One Liners</span>
+                    <span class="brand-tagline">Quick revision · Study modules</span>
+                </span>
+            </a>
+            <div class="header-actions">
+                <span class="header-badge">📚 12 Months</span>
+            </div>
         </header>
 
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search for a month (e.g., March)...">
+        <!-- ─── Stats ─── -->
+        <div class="stats-row" role="list">
+            <span class="stat-item" role="listitem">
+                <span class="stat-number" id="totalMonths">12</span> Total
+            </span>
+            <span class="stat-divider" aria-hidden="true"></span>
+            <span class="stat-item" role="listitem">
+                <span class="stat-number accent" id="availableCount">0</span> Available
+            </span>
+            <span class="stat-divider" aria-hidden="true"></span>
+            <span class="stat-item" role="listitem">
+                <span class="stat-number locked" id="lockedCount">0</span> Coming Soon
+            </span>
         </div>
 
-        <main class="month-grid" id="monthGrid">
-            <div id="noResults" class="no-results">No months match your search.</div>
-            <!-- Cards are generated via JavaScript -->
-        </main>
+        <!-- ─── Search ─── -->
+        <div class="search-wrap">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for a month…" aria-label="Search months" autocomplete="off" />
+            <button class="clear-btn" id="clearBtn" aria-label="Clear search">✕</button>
+        </div>
+
+        <!-- ─── Grid ─── -->
+        <div class="month-grid" id="monthGrid" role="list">
+            <div id="noResults" class="no-results" role="status">
+                <span class="emoji" aria-hidden="true">🔎</span>
+                No months match your search.
+                <div class="sub">Try a different keyword or clear the search.</div>
+            </div>
+        </div>
+
+        <!-- ─── Unified Footer Card ─── -->
+        <footer class="app-footer">
+            <a href="https://github.com/3222h/" target="_blank" rel="noopener noreferrer" class="footer-profile-card" aria-label="Visit Ashutosh Singh on GitHub">
+                <span class="dev-info">
+                    <span>Developed by</span>
+                    <strong class="dev-name">Ashutosh Singh</strong>
+                </span>
+
+                <span class="footer-divider-pipe" aria-hidden="true"></span>
+
+                <span class="github-info">
+                    <!-- GitHub Icon -->
+                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.15 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.62.24 2.85.12 3.15.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>View on GitHub</span>
+                    <strong class="gh-handle">@3222h</strong>
+                    <span class="gh-arrow" aria-hidden="true">→</span>
+                </span>
+            </a>
+        </footer>
     </div>
 
-<footer>
-    Developer: <span class="author-name"><strong><a href="https://github.com/3222h/" target="_blank" rel="noopener noreferrer">ASHUTOSH SINGH</a></strong></span>
-</footer>
-
     <script>
-        // Array of months with an 'available' flag. 
-        const monthsData = [
-            { name: "January", available: false },
-            { name: "February", available: false },
-            { name: "March", available: false },
-            { name: "April", available: false },
-            { name: "May", available: false },
-            { name: "June", available: false },
-            { name: "July", available: true },
-            { name: "August", available: false },
-            { name: "September", available: false },
-            { name: "October", available: false },
-            { name: "November", available: false },
-            { name: "December", available: false }
-        ];
+        (function() {
+            'use strict';
 
-        // --- NEW ADDITION ---
-        // Automatically sort the array so 'available' months appear at the top
-        monthsData.sort((a, b) => {
-            if (a.available === b.available) return 0;
-            return a.available ? -1 : 1;
-        });
-        // --------------------
+            // ─── Data ───
+            const monthsData = [
+                { name: 'January', available: false },
+                { name: 'February', available: false },
+                { name: 'March', available: false },
+                { name: 'April', available: false },
+                { name: 'May', available: false },
+                { name: 'June', available: false },
+                { name: 'July', available: true },
+                { name: 'August', available: false },
+                { name: 'September', available: false },
+                { name: 'October', available: false },
+                { name: 'November', available: false },
+                { name: 'December', available: false }
+            ];
 
-        const grid = document.getElementById('monthGrid');
-        const searchInput = document.getElementById('searchInput');
-        const noResults = document.getElementById('noResults');
+            // ─── SORTING LOGIC (available months first, then chronological) ───
+            const monthOrder = ['january', 'february', 'march', 'april', 'may', 'june',
+                'july', 'august', 'september', 'october', 'november', 'december'
+            ];
 
-        const arrowIcon = `
-            <svg viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-        `;
-        const lockIcon = `
-            <svg viewBox="0 0 24 24">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0110 0v4"></path>
-            </svg>
-        `;
-
-        // Function to create and render cards
-        function renderCards() {
-            monthsData.forEach(month => {
-                const a = document.createElement('a');
-                // If available, route to month.html, else route to coming-soon.html
-                a.href = month.available ? month.name.toLowerCase() + '.html' : 'coming-soon.html';
-                a.className = `month-card ${month.available ? '' : 'unavailable'}`;
-                a.dataset.month = month.name.toLowerCase(); 
-                
-                a.innerHTML = `
-                    <div class="card-content-wrapper">
-                        <span class="card-content">${month.name}</span>
-                        ${!month.available ? '<span class="badge">Coming Soon</span>' : ''}
-                    </div>
-                    <div class="card-icon">${month.available ? arrowIcon : lockIcon}</div>
-                `;
-                
-                grid.appendChild(a);
+            monthsData.sort((a, b) => {
+                if (a.available && !b.available) return -1;
+                if (!a.available && b.available) return 1;
+                return monthOrder.indexOf(a.name.toLowerCase()) - monthOrder.indexOf(b.name.toLowerCase());
             });
-        }
 
-        renderCards();
+            // ─── DOM refs ───
+            const grid = document.getElementById('monthGrid');
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearBtn');
+            const noResults = document.getElementById('noResults');
+            const totalEl = document.getElementById('totalMonths');
+            const availEl = document.getElementById('availableCount');
+            const lockedEl = document.getElementById('lockedCount');
 
-        // Live Search Filter Logic
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.month-card');
-            let visibleCount = 0;
+            let currentSearch = '';
 
-            cards.forEach(card => {
-                const monthName = card.dataset.month;
-                if (monthName.includes(searchTerm)) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
+            // ─── Icons ───
+            const arrowIcon =
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+            const lockIcon =
+                `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>`;
+
+            // ─── Render ───
+            function renderCards() {
+                const existing = grid.querySelectorAll('.month-card');
+                existing.forEach(el => el.remove());
+
+                let availableCount = 0;
+                let lockedCount = 0;
+
+                monthsData.forEach(month => {
+                    if (month.available) availableCount++;
+                    else lockedCount++;
+
+                    const card = document.createElement('a');
+                    card.href = month.available ? month.name.toLowerCase() + '.html' : 'coming-soon.html';
+                    card.className = `month-card ${month.available ? '' : 'unavailable'}`;
+                    card.setAttribute('role', 'listitem');
+                    card.dataset.month = month.name.toLowerCase();
+                    card.dataset.available = month.available ? 'true' : 'false';
+
+                    card.innerHTML = `
+                        <div class="card-inner">
+                            <div class="card-top">
+                                <span class="card-title">${month.name}</span>
+                                <span class="card-badge ${month.available ? '' : 'locked'}">
+                                    ${month.available ? '✅ Available' : '⏳ Coming Soon'}
+                                </span>
+                            </div>
+                            <div class="card-action">
+                                ${month.available ? 'View Module' : 'Unlock Soon'}
+                                <span class="arrow" aria-hidden="true">
+                                    ${month.available ? '→' : '🔒'}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+
+                    grid.appendChild(card);
+                });
+
+                totalEl.textContent = monthsData.length;
+                availEl.textContent = availableCount;
+                lockedEl.textContent = lockedCount;
+
+                applySearch();
+            }
+
+            // ─── Search ───
+            function applySearch() {
+                const cards = grid.querySelectorAll('.month-card');
+                let visibleCount = 0;
+                const term = currentSearch.trim().toLowerCase();
+
+                cards.forEach(card => {
+                    const monthName = card.dataset.month || '';
+                    let show = true;
+
+                    if (term !== '') {
+                        if (!monthName.includes(term)) show = false;
+                    }
+
+                    if (show) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+
+                if (currentSearch.trim() !== '') {
+                    clearBtn.classList.add('visible');
                 } else {
-                    card.classList.add('hidden');
+                    clearBtn.classList.remove('visible');
+                }
+            }
+
+            searchInput.addEventListener('input', function() {
+                currentSearch = this.value;
+                applySearch();
+            });
+
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                currentSearch = '';
+                applySearch();
+                searchInput.focus();
+            });
+
+            // ─── Mouse Glow ───
+            grid.addEventListener('mousemove', function(e) {
+                const cards = grid.querySelectorAll('.month-card:not(.hidden)');
+                for (const card of cards) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', x + 'px');
+                    card.style.setProperty('--mouse-y', y + 'px');
                 }
             });
 
-            // Show "No Results" message if no cards are visible
-            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-        });
-
-        // Mouse Tracking Glow Effect (Desktop)
-        grid.addEventListener('mousemove', e => {
-            const cards = document.querySelectorAll('.month-card');
-            for(const card of cards) {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            }
-        });
-
-        // Touch Tracking Glow & Scale Effect (Mobile)
-        grid.addEventListener('touchstart', e => {
-            const card = e.target.closest('.month-card');
-            if (card) {
+            // ─── Touch Glow ───
+            grid.addEventListener('touchstart', function(e) {
+                const card = e.target.closest('.month-card');
+                if (!card) return;
+                if (card.classList.contains('hidden')) return;
                 const touch = e.touches[0];
                 const rect = card.getBoundingClientRect();
                 const x = touch.clientX - rect.left;
                 const y = touch.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
                 card.classList.add('touch-active');
-            }
-        }, {passive: true});
+            }, { passive: true });
 
-        grid.addEventListener('touchend', e => {
-            const cards = document.querySelectorAll('.month-card');
-            cards.forEach(c => c.classList.remove('touch-active'));
-        });
-        
-        grid.addEventListener('touchcancel', e => {
-            const cards = document.querySelectorAll('.month-card');
-            cards.forEach(c => c.classList.remove('touch-active'));
-        });
+            grid.addEventListener('touchend', function() {
+                grid.querySelectorAll('.month-card').forEach(c => c.classList.remove('touch-active'));
+            });
+
+            grid.addEventListener('touchcancel', function() {
+                grid.querySelectorAll('.month-card').forEach(c => c.classList.remove('touch-active'));
+            });
+
+            // ─── Init ───
+            renderCards();
+
+        })();
     </script>
+
 </body>
 </html>
