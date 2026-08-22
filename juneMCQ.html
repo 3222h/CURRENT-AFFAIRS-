@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>June 2026 Current Affairs MCQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --amber-50:#FAEEDA; --amber-100:#FAC775; --amber-200:#EF9F27;
+    --amber-400:#BA7517; --amber-600:#854F0B; --amber-800:#633806;
+    --green-50:#EAF3DE; --green-200:#97C459; --green-600:#3B6D11;
+    --red-50:#FCEBEB; --red-200:#F09595; --red-600:#A32D2D;
+    --blue-50:#E8F0FB; --blue-400:#4A7FC1; --blue-600:#2D5FA0;
+    --yellow-50:#FFFBE6; --yellow-400:#F5C518;
+    --gray-50:#F1EFE8; --gray-100:#D3D1C7; --gray-200:#B4B2A9;
+    --gray-600:#5F5E5A; --gray-800:#444441; --gray-900:#2C2C2A;
+    --white:#FFFEF9;
+    --radius:16px; --radius-sm:10px;
+    --shadow-card:0 2px 12px rgba(0,0,0,0.08);
+    --fs:1;
+  }
+  html,body { height:100%; font-family:'Sora',sans-serif; background:linear-gradient(160deg,#FAEEDA 0%,#FAC775 60%,#EF9F27 100%); }
+  body { display:flex; justify-content:center; align-items:flex-start; min-height:100vh; }
+
+  .phone-frame { width:100%; max-width:390px; min-height:100vh; background:var(--white); display:flex; flex-direction:column; position:relative; overflow:hidden; }
+
+  /* STATUS BAR */
+  .status-bar { background:var(--amber-400); padding:12px 20px 8px; display:flex; justify-content:space-between; align-items:center; color:var(--white); font-size:12px; font-weight:600; }
+  .status-bar .time { font-size:14px; font-weight:700; }
+  .status-icons { display:flex; gap:6px; align-items:center; }
+
+  /* HEADER */
+  .quiz-header { background:var(--amber-400); padding:4px 16px 14px; color:var(--white); }
+  .header-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .quiz-title { font-size:13px; font-weight:600; letter-spacing:.5px; opacity:.92; text-transform:uppercase; }
+  .header-right { display:flex; align-items:center; gap:8px; }
+  .score-badge { background:rgba(255,255,255,.22); border:1.5px solid rgba(255,255,255,.4); border-radius:20px; padding:4px 14px; font-size:13px; font-weight:700; }
+  .streak-badge { background:rgba(255,255,255,.18); border:1.5px solid rgba(255,255,255,.35); border-radius:20px; padding:4px 10px; font-size:12px; font-weight:700; display:none; }
+  .streak-badge.show { display:flex; align-items:center; gap:3px; }
+
+  /* TIMER */
+  .timer-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .timer-track { flex:1; height:5px; background:rgba(255,255,255,.25); border-radius:99px; overflow:hidden; }
+  .timer-fill { height:100%; background:var(--white); border-radius:99px; transition:width 1s linear; }
+  .timer-fill.warning { background:#FFD700; }
+  .timer-fill.danger  { background:#FF6B6B; }
+  .timer-text { font-size:11px; font-weight:700; opacity:.9; min-width:28px; text-align:right; }
+  .timer-text.danger { color:#FFD700; }
+
+  /* PROGRESS */
+  .progress-row { display:flex; align-items:center; gap:10px; }
+  .progress-track { flex:1; height:6px; background:rgba(255,255,255,.25); border-radius:99px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--white); border-radius:99px; transition:width .5s cubic-bezier(.4,0,.2,1); }
+  .progress-text { font-size:12px; font-weight:600; opacity:.9; min-width:42px; text-align:right; }
+
+  /* ICON BTN */
+  .icon-btn { background:rgba(255,255,255,.18); border:1.5px solid rgba(255,255,255,.35); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; -webkit-tap-highlight-color:transparent; flex-shrink:0; transition:background .15s; font-size:16px; }
+  .icon-btn:active { background:rgba(255,255,255,.32); }
+  .icon-btn svg { width:17px; height:17px; fill:white; }
+
+  /* DRAWER OVERLAY */
+  .drawer-overlay { display:none; position:absolute; inset:0; background:rgba(44,44,42,.45); z-index:100; }
+  .drawer-overlay.open { display:block; animation:fadeO .2s ease; }
+  @keyframes fadeO { from{opacity:0}to{opacity:1} }
+
+  /* DRAWER */
+  .drawer { position:absolute; top:0; right:0; width:82%; max-width:300px; height:100%; background:var(--white); z-index:101; display:flex; flex-direction:column; transform:translateX(100%); transition:transform .28s cubic-bezier(.4,0,.2,1); border-radius:var(--radius) 0 0 var(--radius); overflow:hidden; }
+  .drawer.open { transform:translateX(0); }
+  .drawer-header { background:var(--amber-400); padding:44px 18px 16px; color:var(--white); display:flex; justify-content:space-between; align-items:center; }
+  .drawer-title { font-size:15px; font-weight:700; }
+  .drawer-close { background:rgba(255,255,255,.2); border:none; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:white; font-size:17px; font-weight:700; font-family:'Sora',sans-serif; -webkit-tap-highlight-color:transparent; }
+  .drawer-close:active { background:rgba(255,255,255,.35); }
+
+  /* DRAWER FILTER */
+  .drawer-filter { display:flex; gap:6px; padding:10px 14px; border-bottom:1px solid var(--gray-100); overflow-x:auto; }
+  .filter-tab { border:1.5px solid var(--gray-100); background:var(--gray-50); border-radius:20px; padding:4px 12px; font-size:11px; font-weight:600; color:var(--gray-600); cursor:pointer; white-space:nowrap; font-family:'Sora',sans-serif; -webkit-tap-highlight-color:transparent; transition:all .15s; }
+  .filter-tab.active { background:var(--amber-200); border-color:var(--amber-400); color:var(--amber-800); }
+  .filter-tab.fc { background:var(--green-50); border-color:var(--green-200); color:var(--green-600); }
+  .filter-tab.fw { background:var(--blue-50); border-color:var(--blue-400); color:var(--blue-600); }
+  .filter-tab.fb { background:var(--yellow-50); border-color:var(--yellow-400); color:#8B6914; }
+
+  /* LEGEND */
+  .drawer-legend { display:flex; flex-wrap:wrap; gap:6px 12px; padding:10px 16px; border-bottom:1px solid var(--gray-100); }
+  .legend-item { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--gray-600); font-weight:500; }
+  .legend-dot { width:12px; height:12px; border-radius:3px; flex-shrink:0; }
+  .legend-dot.ld-current  { background:var(--amber-200); }
+  .legend-dot.ld-correct  { background:var(--green-600); }
+  .legend-dot.ld-wrong    { background:var(--blue-400); }
+  .legend-dot.ld-skipped  { background:var(--gray-200); }
+  .legend-dot.ld-unseen   { background:var(--gray-50); border:1.5px solid var(--gray-100); }
+  .legend-dot.ld-bookmark { background:var(--yellow-400); }
+
+  /* GRID */
+  .drawer-grid { padding:12px 14px; display:flex; flex-wrap:wrap; gap:6px; align-content:flex-start; overflow-y:auto; flex:1; }
+  .q-nav-btn { width:36px; height:36px; border-radius:6px; border:1.5px solid var(--gray-100); background:var(--gray-50); font-size:12px; font-weight:700; color:var(--gray-600); cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .15s ease; -webkit-tap-highlight-color:transparent; font-family:'Sora',sans-serif; position:relative; }
+  .q-nav-btn:active { transform:scale(.9); }
+  .q-nav-btn.nav-current { background:var(--amber-200); border-color:var(--amber-400); color:var(--amber-800); box-shadow:0 0 0 3px rgba(239,159,39,.28); }
+  .q-nav-btn.nav-correct { background:var(--green-600); border-color:var(--green-600); color:#fff; }
+  .q-nav-btn.nav-wrong   { background:var(--blue-400); border-color:var(--blue-400); color:#fff; }
+  .q-nav-btn.nav-skipped { background:var(--gray-100); border-color:var(--gray-200); color:var(--gray-600); opacity:.75; }
+  .q-nav-btn .bm-dot { position:absolute; top:2px; right:2px; width:6px; height:6px; background:var(--yellow-400); border-radius:50%; }
+
+  /* DRAWER FOOTER */
+  .drawer-footer { padding:12px 16px; border-top:1px solid var(--gray-100); display:flex; gap:8px; }
+  .d-stat { flex:1; background:var(--gray-50); border-radius:8px; padding:8px 4px; text-align:center; border:1px solid var(--gray-100); }
+  .d-stat .dv { font-size:18px; font-weight:700; color:var(--gray-900); }
+  .d-stat .dl { font-size:10px; color:var(--gray-600); font-weight:500; margin-top:1px; }
+  .d-stat.dg .dv { color:var(--green-600); }
+  .d-stat.dr .dv { color:var(--blue-400); }
+  .d-stat.da .dv { color:var(--amber-400); }
+
+  /* REVIEW BANNER */
+  .review-banner { background:var(--red-50); border-bottom:2px solid var(--red-200); padding:8px 18px; display:none; align-items:center; justify-content:space-between; }
+  .review-banner.show { display:flex; }
+  .review-banner-text { font-size:12px; font-weight:700; color:var(--red-600); }
+  .exit-review-btn { background:var(--red-600); color:#fff; border:none; border-radius:6px; padding:4px 10px; font-size:11px; font-weight:700; cursor:pointer; font-family:'Sora',sans-serif; }
+
+  /* QUESTION CARD */
+  .question-wrap { padding:16px 18px 8px; flex:1; display:flex; flex-direction:column; overflow-y:auto; }
+  .question-card { background:var(--white); border:1.5px solid var(--amber-100); border-radius:var(--radius); padding:20px 18px 18px; box-shadow:var(--shadow-card); margin-bottom:14px; animation:slideUp .35s cubic-bezier(.4,0,.2,1); position:relative; }
+  @keyframes slideUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+  .q-top-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+  .q-num-label { font-size:11px; font-weight:700; color:var(--amber-400); letter-spacing:1px; text-transform:uppercase; }
+  .q-action-btn { background:none; border:none; cursor:pointer; font-size:18px; padding:2px 4px; -webkit-tap-highlight-color:transparent; opacity:.45; transition:opacity .15s,transform .15s; }
+  .q-action-btn:active { transform:scale(.85); }
+  .q-action-btn.active { opacity:1; }
+
+  .q-text { font-size:calc(15.5px * var(--fs)); font-weight:500; color:var(--gray-900); line-height:1.55; margin-bottom:6px; }
+  .q-hint { font-size:calc(12px * var(--fs)); color:var(--gray-600); font-family:'Noto Sans Devanagari',sans-serif; line-height:1.5; }
+
+  /* FONT SIZE */
+  .font-row { display:flex; justify-content:flex-end; gap:4px; margin-bottom:8px; }
+  .font-btn { background:var(--gray-50); border:1.5px solid var(--gray-100); border-radius:6px; padding:3px 10px; font-size:11px; font-weight:700; color:var(--gray-600); cursor:pointer; font-family:'Sora',sans-serif; -webkit-tap-highlight-color:transparent; }
+  .font-btn:active { background:var(--gray-100); }
+
+  /* OPTIONS */
+  .options-list { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
+  .option-btn { width:100%; background:var(--white); border:1.5px solid var(--gray-100); border-radius:var(--radius-sm); padding:13px 16px; display:flex; align-items:center; gap:13px; cursor:pointer; text-align:left; transition:all .18s ease; -webkit-tap-highlight-color:transparent; animation:fadeIn .3s ease both; font-family:'Sora',sans-serif; }
+  .option-btn:nth-child(1){animation-delay:.05s} .option-btn:nth-child(2){animation-delay:.10s}
+  .option-btn:nth-child(3){animation-delay:.15s} .option-btn:nth-child(4){animation-delay:.20s}
+  @keyframes fadeIn { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
+  .option-btn:active:not(:disabled) { transform:scale(.98); }
+  .option-btn:disabled { cursor:default; }
+  .opt-label { width:30px; height:30px; border-radius:50%; background:var(--amber-50); border:1.5px solid var(--amber-100); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--amber-600); flex-shrink:0; transition:all .18s ease; }
+  .opt-text { font-size:calc(14px * var(--fs)); font-weight:500; color:var(--gray-800); line-height:1.4; flex:1; }
+  .opt-icon { font-size:18px; flex-shrink:0; opacity:0; transition:opacity .2s; }
+
+  /* CORRECT = black text, WRONG = blue */
+  .option-btn.correct  { background:var(--green-50); border-color:var(--green-200); }
+  .option-btn.correct .opt-label { background:var(--green-600); border-color:var(--green-600); color:#fff; }
+  .option-btn.correct .opt-text  { color:#111111; font-weight:600; }
+  .option-btn.correct .opt-icon  { opacity:1; color:var(--green-600); }
+  .option-btn.wrong { background:var(--blue-50); border-color:var(--blue-400); }
+  .option-btn.wrong .opt-label { background:var(--blue-400); border-color:var(--blue-400); color:#fff; }
+  .option-btn.wrong .opt-text  { color:#1a3a6b; font-weight:600; }
+  .option-btn.wrong .opt-icon  { opacity:1; color:var(--blue-400); }
+  .option-btn.reveal-correct { background:var(--green-50); border-color:var(--green-200); opacity:.75; }
+  .option-btn.reveal-correct .opt-label { background:var(--green-600); border-color:var(--green-600); color:#fff; }
+  .option-btn.reveal-correct .opt-icon  { opacity:1; color:var(--green-600); }
+
+  /* EXPLANATION */
+  .explanation-box { background:var(--amber-50); border-left:3.5px solid var(--amber-200); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:12px 14px; margin-bottom:4px; display:none; animation:slideUp .3s ease; }
+  .explanation-box.show { display:block; }
+  .exp-label { font-size:11px; font-weight:700; color:var(--amber-400); letter-spacing:.8px; text-transform:uppercase; margin-bottom:5px; }
+  .exp-text  { font-size:calc(13px * var(--fs)); color:var(--gray-800); line-height:1.5; }
+  .exp-hindi { font-size:calc(12px * var(--fs)); color:var(--gray-600); font-family:'Noto Sans Devanagari',sans-serif; margin-top:5px; line-height:1.5; }
+
+  /* NEXT BTN */
+  .next-btn { width:100%; background:var(--amber-400); color:var(--white); border:none; border-radius:var(--radius-sm); padding:15px; font-size:15px; font-weight:700; font-family:'Sora',sans-serif; cursor:pointer; display:none; align-items:center; justify-content:center; gap:8px; margin-top:6px; transition:background .18s,transform .15s; -webkit-tap-highlight-color:transparent; letter-spacing:.3px; }
+  .next-btn.show { display:flex; animation:slideUp .3s ease; }
+  .next-btn:active { transform:scale(.97); background:var(--amber-600); }
+
+  /* NAV ROW */
+  .nav-row { display:flex; gap:10px; margin-top:10px; margin-bottom:8px; }
+  .prev-btn,.skip-next-btn { flex:1; padding:13px; border-radius:var(--radius-sm); font-size:14px; font-weight:700; font-family:'Sora',sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background .15s,transform .15s; }
+  .prev-btn { background:var(--gray-50); color:var(--gray-600); border:1.5px solid var(--gray-100); }
+  .prev-btn:active { transform:scale(.97); background:var(--gray-100); }
+  .skip-next-btn { background:var(--amber-200); color:var(--amber-800); border:none; }
+  .skip-next-btn:active { transform:scale(.97); background:var(--amber-400); color:var(--white); }
+  .prev-btn:disabled,.skip-next-btn:disabled { opacity:.38; cursor:default; pointer-events:none; }
+
+  /* RESULT */
+  .result-screen { display:none; flex-direction:column; align-items:center; padding:28px 20px 40px; text-align:center; flex:1; overflow-y:auto; }
+  .result-screen.show { display:flex; animation:slideUp .4s ease; }
+  .result-trophy { font-size:64px; margin-bottom:6px; }
+  .result-title  { font-size:22px; font-weight:700; color:var(--gray-900); margin-bottom:4px; }
+  .result-sub    { font-size:13px; color:var(--gray-600); margin-bottom:20px; font-family:'Noto Sans Devanagari',sans-serif; }
+  .score-ring { position:relative; width:120px; height:120px; margin:0 auto 16px; }
+  .score-ring svg { transform:rotate(-90deg); }
+  .bg-arc { fill:none; stroke:var(--amber-50); stroke-width:10; }
+  .fg-arc { fill:none; stroke:var(--amber-200); stroke-width:10; stroke-linecap:round; transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1) .3s; }
+  .score-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .sc-num   { font-size:28px; font-weight:700; color:var(--amber-600); }
+  .sc-denom { font-size:13px; color:var(--gray-600); margin-top:-2px; }
+  .result-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-bottom:16px; }
+  .stat-card { background:var(--gray-50); border-radius:var(--radius-sm); padding:12px 10px; border:1px solid var(--gray-100); text-align:center; }
+  .st-val   { font-size:22px; font-weight:700; color:var(--gray-900); }
+  .st-label { font-size:11px; color:var(--gray-600); margin-top:2px; font-weight:500; }
+  .stat-card.green .st-val { color:var(--green-600); }
+  .stat-card.blue  .st-val { color:var(--blue-400); }
+  .stat-card.amber .st-val { color:var(--amber-400); }
+  .stat-card.purple .st-val { color:#7C3AED; }
+  .result-time-row { font-size:13px; color:var(--gray-600); margin-bottom:20px; }
+  .result-time-row span { font-weight:700; color:var(--gray-900); }
+  .result-btns { display:flex; flex-direction:column; gap:10px; width:100%; }
+  .restart-btn { width:100%; background:var(--amber-400); color:var(--white); border:none; border-radius:var(--radius-sm); padding:16px; font-size:16px; font-weight:700; font-family:'Sora',sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .restart-btn:active { background:var(--amber-600); transform:scale(.97); }
+  .review-btn  { width:100%; background:var(--red-50); color:var(--red-600); border:1.5px solid var(--red-200); border-radius:var(--radius-sm); padding:14px; font-size:15px; font-weight:700; font-family:'Sora',sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .review-btn:active  { background:var(--red-200); transform:scale(.97); }
+  .bookmark-btn { width:100%; background:var(--yellow-50); color:#8B6914; border:1.5px solid var(--yellow-400); border-radius:var(--radius-sm); padding:14px; font-size:15px; font-weight:700; font-family:'Sora',sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .bookmark-btn:active { background:var(--yellow-400); transform:scale(.97); }
+  .share-btn   { width:100%; background:var(--blue-50); color:var(--blue-600); border:1.5px solid var(--blue-400); border-radius:var(--radius-sm); padding:14px; font-size:15px; font-weight:700; font-family:'Sora',sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .share-btn:active   { background:var(--blue-400); color:#fff; transform:scale(.97); }
+
+  /* SPLASH */
+  .splash { display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; padding:32px 24px 40px; text-align:center; }
+  .splash-icon  { font-size:72px; margin-bottom:12px; }
+  .splash-title { font-size:26px; font-weight:700; color:var(--gray-900); margin-bottom:6px; }
+  .splash-sub   { font-size:14px; color:var(--gray-600); line-height:1.6; margin-bottom:28px; font-family:'Noto Sans Devanagari',sans-serif; }
+  .meta-chips { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+  .chip { background:var(--amber-50); border:1px solid var(--amber-100); border-radius:99px; padding:6px 14px; font-size:12px; font-weight:600; color:var(--amber-600); }
+  .start-btn { width:100%; background:var(--amber-400); color:var(--white); border:none; border-radius:var(--radius-sm); padding:17px; font-size:16px; font-weight:700; font-family:'Sora',sans-serif; cursor:pointer; -webkit-tap-highlight-color:transparent; letter-spacing:.4px; }
+  .start-btn:active { background:var(--amber-600); }
+
+  /* TOAST */
+  .toast { position:absolute; bottom:80px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--gray-900); color:#fff; padding:10px 20px; border-radius:20px; font-size:13px; font-weight:600; opacity:0; transition:all .3s ease; pointer-events:none; white-space:nowrap; z-index:200; }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div class="phone-frame" id="app">
+
+  <div class="status-bar">
+    <span class="time" id="clock">9:41</span>
+    <div class="status-icons"><span>●●●</span><span>WiFi</span><span>🔋</span></div>
+  </div>
+
+  <!-- SPLASH -->
+  <div class="splash" id="splashScreen">
+    <div class="splash-icon">📋</div>
+    <div class="splash-title">June 2026 Current Affairs</div>
+    <div class="splash-sub">Full monthly MCQ test — RRB Group D / NTPC, SSC CGL/CHSL, UPSSSC PET level.</div>
+    <div class="meta-chips">
+      <span class="chip" id="countChip">📝 0 Questions</span>
+      <span class="chip">⏱ 60s Timer</span>
+      <span class="chip">🔖 Bookmark</span>
+      <span class="chip">🗓️ June 2026</span>
+    </div>
+    <button class="start-btn" onclick="startQuiz()">Start Quiz →</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quizScreen" style="display:none;flex-direction:column;flex:1;">
+    <div class="quiz-header">
+      <div class="header-top">
+        <span class="quiz-title" id="headerTitle">June 2026 Current Affairs</span>
+        <div class="header-right">
+          <span class="streak-badge" id="streakBadge">🔥 <span id="streakNum">0</span></span>
+          <span class="score-badge" id="scoreLabel">Score: 0</span>
+          <button class="icon-btn" onclick="openDrawer()" aria-label="Navigator">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="timer-row">
+        <div class="timer-track"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+        <span class="timer-text" id="timerText">60</span>
+      </div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <span class="progress-text" id="progressText">0 / 0</span>
+      </div>
+    </div>
+
+    <div class="review-banner" id="reviewBanner">
+      <span class="review-banner-text" id="reviewBannerText">📝 Review Mode</span>
+      <button class="exit-review-btn" onclick="exitReview()">Exit ✕</button>
+    </div>
+
+    <div class="question-wrap" id="questionWrap">
+      <div class="font-row">
+        <button class="font-btn" onclick="changeFontSize(-1)">A−</button>
+        <button class="font-btn" onclick="changeFontSize(1)">A+</button>
+      </div>
+      <div class="question-card" id="questionCard">
+        <div class="q-top-row">
+          <div class="q-num-label" id="qNum">Question 1 of 0</div>
+          <button class="q-action-btn" id="bookmarkBtn" onclick="toggleBookmark()" title="Bookmark">🔖</button>
+        </div>
+        <div class="q-text" id="qText"></div>
+        <div class="q-hint" id="qHint"></div>
+      </div>
+      <div class="options-list" id="optionsList"></div>
+      <div class="explanation-box" id="explanationBox">
+        <div class="exp-label">✦ Explanation</div>
+        <div class="exp-text"  id="expText"></div>
+        <div class="exp-hindi" id="expHindi"></div>
+      </div>
+      <button class="next-btn" id="nextBtn" onclick="nextQuestion()"></button>
+      <div class="nav-row">
+        <button class="prev-btn"      id="prevBtn"      onclick="prevQuestion()">← Previous</button>
+        <button class="skip-next-btn" id="skipNextBtn"  onclick="nextQuestion()">Skip →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-screen" id="resultScreen">
+    <div class="result-trophy" id="trophyEmoji">🏆</div>
+    <div class="result-title"  id="resultTitle">Outstanding!</div>
+    <div class="result-sub"    id="resultSub">Outstanding performance! 🎉</div>
+    <div class="score-ring">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle class="bg-arc" cx="60" cy="60" r="50"/>
+        <circle class="fg-arc" id="scoreArc" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="314.16"/>
+      </svg>
+      <div class="score-center">
+        <span class="sc-num"   id="finalScore">0</span>
+        <span class="sc-denom" id="finalDenom">out of 0</span>
+      </div>
+    </div>
+    <div class="result-stats-grid">
+      <div class="stat-card green"> <div class="st-val" id="correctCount">0</div> <div class="st-label">✓ Correct</div></div>
+      <div class="stat-card blue">  <div class="st-val" id="wrongCount">0</div>   <div class="st-label">✗ Wrong</div></div>
+      <div class="stat-card amber"> <div class="st-val" id="skippedCount">0</div> <div class="st-label">⏭ Skipped</div></div>
+      <div class="stat-card purple"><div class="st-val" id="accuracyVal">0%</div> <div class="st-label">🎯 Accuracy</div></div>
+    </div>
+    <div class="result-time-row">⏱ Total Time: <span id="totalTimeVal">0:00</span> &nbsp;|&nbsp; 🔥 Best Streak: <span id="bestStreakVal">0</span></div>
+    <div class="result-btns">
+      <button class="restart-btn"  onclick="restartQuiz()">🔁 Play Again</button>
+      <button class="review-btn"   id="reviewWrongBtn"    onclick="startReview()">📝 Review Wrong Answers</button>
+      <button class="bookmark-btn" id="reviewBookmarkBtn" onclick="startBookmarkReview()">🔖 Review Bookmarked</button>
+      <button class="share-btn"    onclick="shareResult()">📤 Share Result</button>
+    </div>
+  </div>
+
+  <!-- DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <div class="drawer" id="navDrawer">
+    <div class="drawer-header">
+      <span class="drawer-title">📌 Question Navigator</span>
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="drawer-filter">
+      <button class="filter-tab active" onclick="setFilter('all',this)">All</button>
+      <button class="filter-tab fc"     onclick="setFilter('correct',this)">✓ Correct</button>
+      <button class="filter-tab fw"     onclick="setFilter('wrong',this)">✗ Wrong</button>
+      <button class="filter-tab"        onclick="setFilter('skipped',this)">⏭ Skipped</button>
+      <button class="filter-tab fb"     onclick="setFilter('bookmark',this)">🔖 Saved</button>
+    </div>
+    <div class="drawer-legend">
+      <div class="legend-item"><div class="legend-dot ld-current"></div>Current</div>
+      <div class="legend-item"><div class="legend-dot ld-correct"></div>Correct</div>
+      <div class="legend-item"><div class="legend-dot ld-wrong"></div>Wrong</div>
+      <div class="legend-item"><div class="legend-dot ld-skipped"></div>Skipped</div>
+      <div class="legend-item"><div class="legend-dot ld-unseen"></div>Not visited</div>
+      <div class="legend-item"><div class="legend-dot ld-bookmark"></div>Bookmarked</div>
+    </div>
+    <div class="drawer-grid" id="drawerGrid"></div>
+    <div class="drawer-footer">
+      <div class="d-stat dg"><div class="dv" id="dCorrect">0</div><div class="dl">Correct</div></div>
+      <div class="d-stat dr"><div class="dv" id="dWrong">0</div>  <div class="dl">Wrong</div></div>
+      <div class="d-stat da"><div class="dv" id="dLeft">0</div>  <div class="dl">Remaining</div></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+//  ADD YOUR QUESTIONS HERE
+// ════════════════════════════════════════
+const QUESTIONS = [
+  {
+    text: "Winner of women's 10m air pistol gold at ISSF World Cup 2026 in Munich?",
+    options: ["Royal Challengers Bengaluru", "K Satyanarayana Raju", "Kimi Antonelli", "Suruchi Inder Singh"],
+    answer: 3,
+    explanation: "Suruchi (Inder) Singh topped the field with 242.1 points to win gold in the women's 10m air pistol final at the ISSF World Cup 2026 in Munich, with teammate Esha Singh taking silver in an Indian one-two finish."
+  },
+  {
+    text: "State that started the Adarsh Samriddhi Yojana?",
+    options: ["Kerala", "Jammu & Kashmir", "Uttarakhand", "Chhattisgarh"],
+    answer: 3,
+    explanation: "Chhattisgarh — from the June 2026 current affairs note: \"State that started the Adarsh Samriddhi Yojana.\" [00:02:24]"
+  },
+  {
+    text: "Country that captured Lebanon's 900-year-old fort?",
+    options: ["Norway", "Sri Lanka", "Israel", "Uzbekistan"],
+    answer: 2,
+    explanation: "Israel — from the June 2026 current affairs note: \"Country that captured Lebanon's 900-year-old fort.\" [00:02:30]"
+  },
+  {
+    text: "New sport added to Commonwealth Games 2030?",
+    options: ["Yogasana", "Jio", "CBI", "Operation Nasr"],
+    answer: 0,
+    explanation: "Yogasana — from the June 2026 current affairs note: \"New sport added to Commonwealth Games 2030.\" [00:02:40]"
+  },
+  {
+    text: "Winner of Indian Premier League (IPL) 2026?",
+    options: ["Bimal N. Patel", "Royal Challengers Bengaluru", "Divyanshi Bhowmick", "Suruchi Inder Singh"],
+    answer: 1,
+    explanation: "RCB beat Gujarat Titans by 5 wickets in the final at Narendra Modi Stadium, Ahmedabad, becoming only the third team (after CSK and MI) to successfully defend the IPL title; Virat Kohli was Player of the Match."
+  },
+  {
+    text: "Percentage of institutional deliveries in India as per NFHS-6?",
+    options: ["93.6%", "95.6%", "90.6%", "94.6%"],
+    answer: 2,
+    explanation: "90.6% — from the June 2026 current affairs note: \"Percentage of institutional deliveries in India as per NFHS-6.\" [00:03:08]"
+  },
+  {
+    text: "Third state to pass the Uniform Civil Code (UCC) bill?",
+    options: ["Assam", "Tamil Nadu", "Karnataka", "Rajasthan"],
+    answer: 0,
+    explanation: "The Assam Assembly passed the Uniform Civil Code Bill, 2026, making Assam the third state after Uttarakhand and Gujarat — and the first in the Northeast — to adopt such a law covering marriage, divorce, succession and live-in relationships."
+  },
+  {
+    text: "City in UP where open-air naval museum 'Nausena Shaurya Vatika' was inaugurated?",
+    options: ["Jammu", "Lucknow", "Delhi", "Puducherry"],
+    answer: 1,
+    explanation: "Lucknow — from the June 2026 current affairs note: \"City in UP where open-air naval museum 'Nausena Shaurya Vatika' was inaugurated.\" [00:03:52]"
+  },
+  {
+    text: "Host country of the famous defence summit 'Shangri-La Dialogue'?",
+    options: ["Saudi Arabia", "Singapore", "Finland", "Bangladesh"],
+    answer: 1,
+    explanation: "Singapore — from the June 2026 current affairs note: \"Host country of the famous defence summit 'Shangri-La Dialogue'.\" [00:04:02]"
+  },
+  {
+    text: "Country that banned social media accounts for children under 16?",
+    options: ["USA", "Mexico", "France", "Malaysia"],
+    answer: 3,
+    explanation: "Malaysia — from the June 2026 current affairs note: \"Country that banned social media accounts for children under 16.\" [00:04:15]"
+  },
+  {
+    text: "India's rank in 22nd Asian U-20 Athletics Championship 2026 in Hong Kong?",
+    options: ["Third", "Second", "First", "Fourth"],
+    answer: 1,
+    explanation: "Second — from the June 2026 current affairs note: \"India's rank in 22nd Asian U-20 Athletics Championship 2026 in Hong Kong.\" [00:04:31]"
+  },
+  {
+    text: "Appointed as the Chairman of DRDO?",
+    options: ["Rajesh Kumar Singh", "Shah Rukh Khan", "Dhiraj Seth", "Venkat Subramani Mohana"],
+    answer: 0,
+    explanation: "Rajesh Kumar Singh — from the June 2026 current affairs note: \"Appointed as the Chairman of DRDO.\" [00:04:50]"
+  },
+  {
+    text: "Appointed as the full-time DGP of Uttar Pradesh?",
+    options: ["Sudarsan Pattnaik", "Evian-les-Bains, France", "Suraj Parasher", "Rajeev Krishna"],
+    answer: 3,
+    explanation: "Rajeev Krishna — from the June 2026 current affairs note: \"Appointed as the full-time DGP of Uttar Pradesh.\" [00:05:00]"
+  },
+  {
+    text: "Indian teenagers winning Earthshot Prize 2026 for plastic innovation from tamarind seeds?",
+    options: ["Harshavardhan", "Avyana Mehta, Ariana Agarwal, and Vivan Chhawchharia", "Unlocking the Potential of Administrative Data", "V.O. Chidambaranar Port"],
+    answer: 1,
+    explanation: "Avyana Mehta, Ariana Agarwal, and Vivan Chhawchharia — from the June 2026 current affairs note: \"Indian teenagers winning Earthshot Prize 2026 for plastic innovation from tamarind seeds.\" [00:05:13]"
+  },
+  {
+    text: "State ranked first in NITI Aayog's Education Quality Report 2026?",
+    options: ["Punjab", "Gujarat", "Telangana", "Chhattisgarh"],
+    answer: 0,
+    explanation: "Punjab — from the June 2026 current affairs note: \"State ranked first in NITI Aayog's Education Quality Report 2026.\" [00:05:40]"
+  },
+  {
+    text: "E-commerce company launching Project Shikhar with BSE?",
+    options: ["Chandigarh University", "Amazon", "Flipkart", "Meesho"],
+    answer: 3,
+    explanation: "Meesho — from the June 2026 current affairs note: \"E-commerce company launching Project Shikhar with BSE.\" [00:05:52]"
+  },
+  {
+    text: "Country that celebrated its 80th National Day on June 2?",
+    options: ["Italy", "Slovakia", "Saudi Arabia", "UK"],
+    answer: 0,
+    explanation: "Italy — from the June 2026 current affairs note: \"Country that celebrated its 80th National Day on June 2.\" [00:06:08]"
+  },
+  {
+    text: "Location where indigenous air-to-surface missile 'Rudram 2' was successfully tested?",
+    options: ["Punjab", "Rajasthan", "Odisha", "Mizoram"],
+    answer: 2,
+    explanation: "Odisha — from the June 2026 current affairs note: \"Location where indigenous air-to-surface missile 'Rudram 2' was successfully tested.\" [00:06:18]"
+  },
+  {
+    text: "State where 362 illegal Bangladeshis were caught under Operation Delta Hunt?",
+    options: ["Goa", "Manipur", "Gujarat", "Telangana"],
+    answer: 2,
+    explanation: "Gujarat — from the June 2026 current affairs note: \"State where 362 illegal Bangladeshis were caught under Operation Delta Hunt.\" [00:06:36]"
+  },
+  {
+    text: "Appointed President of the 81st session of the UN General Assembly?",
+    options: ["Kane Williamson (New Zealand)", "K Satyanarayana Raju", "Varun Bhardwaj", "Khalilur Rahman"],
+    answer: 3,
+    explanation: "Bangladesh's Foreign Minister Khalilur Rahman was elected President of the UN General Assembly's 81st session, defeating Cyprus's Andreas Kakouris in a secret-ballot vote; his term begins on 8 September 2026."
+  },
+  {
+    text: "Year till which the PM SVANidhi scheme was extended?",
+    options: ["2030", "2031", "2028", "2033"],
+    answer: 0,
+    explanation: "2030 — from the June 2026 current affairs note: \"Year till which the PM SVANidhi scheme was extended.\" [00:07:07]"
+  },
+  {
+    text: "Location of the first Special Economic Zone developed by an urban local body?",
+    options: ["Puducherry", "Shillong", "Indore, Madhya Pradesh", "Jammu"],
+    answer: 0,
+    explanation: "Puducherry — from the June 2026 current affairs note: \"Location of the first Special Economic Zone developed by an urban local body.\" [00:07:18]"
+  },
+  {
+    text: "Alliance that launched an underwater drone program for maritime defence?",
+    options: ["UNICEF", "AUKUS (America, UK, Australia)", "WTO", "WHO"],
+    answer: 1,
+    explanation: "AUKUS (America, UK, Australia) — from the June 2026 current affairs note: \"Alliance that launched an underwater drone program for maritime defence.\" [00:07:39]"
+  },
+  {
+    text: "Appointed as the Chairman of CBSE?",
+    options: ["Abhilasha Barak", "Lokhande Prashant Sitaram", "Om Birla", "Geneva, Switzerland"],
+    answer: 1,
+    explanation: "Lokhande Prashant Sitaram — from the June 2026 current affairs note: \"Appointed as the Chairman of CBSE.\" [00:08:02]"
+  },
+  {
+    text: "First private university to launch India AI Data Lab?",
+    options: ["Uber", "Myntra", "Amazon", "Chandigarh University"],
+    answer: 3,
+    explanation: "Chandigarh University — from the June 2026 current affairs note: \"First private university to launch India AI Data Lab.\" [00:08:17]"
+  },
+  {
+    text: "Space agency that ended its MAVEN mission launched in 2013?",
+    options: ["WHO", "UNDP", "IMF", "NASA"],
+    answer: 3,
+    explanation: "NASA — from the June 2026 current affairs note: \"Space agency that ended its MAVEN mission launched in 2013.\" [00:08:29]"
+  },
+  {
+    text: "Country whose ICC membership was cancelled?",
+    options: ["India", "Nepal", "Canada", "Mexico"],
+    answer: 2,
+    explanation: "Canada — from the June 2026 current affairs note: \"Country whose ICC membership was cancelled.\" [00:08:39]"
+  },
+  {
+    text: "Location of the world's first nuclear dustbin named 'Onkalo'?",
+    options: ["Denmark", "Finland", "Israel", "Canada"],
+    answer: 1,
+    explanation: "Finland — from the June 2026 current affairs note: \"Location of the world's first nuclear dustbin named 'Onkalo'.\" [00:08:49]"
+  },
+  {
+    text: "Country elected to the UN Security Council for the first time?",
+    options: ["Kyrgyzstan", "Tajikistan", "Venezuela", "India"],
+    answer: 0,
+    explanation: "Kyrgyzstan — from the June 2026 current affairs note: \"Country elected to the UN Security Council for the first time.\" [00:09:00]"
+  },
+  {
+    text: "World's second-largest solar energy market?",
+    options: ["Japan", "Germany", "Canada", "India"],
+    answer: 3,
+    explanation: "India — from the June 2026 current affairs note: \"World's second-largest solar energy market.\" [00:09:12]"
+  },
+  {
+    text: "Appointed as the Secretary of CBSE?",
+    options: ["Dhiraj Seth", "Varun Bhardwaj", "Alexander Zverev", "Rajesh Kumar Singh"],
+    answer: 1,
+    explanation: "Varun Bhardwaj — from the June 2026 current affairs note: \"Appointed as the Secretary of CBSE.\" [00:09:22]"
+  },
+  {
+    text: "First model border village built in Chumur village of?",
+    options: ["Ladakh", "Delhi", "Shillong", "New Delhi"],
+    answer: 0,
+    explanation: "Ladakh — from the June 2026 current affairs note: \"First model border village built in Chumur village of.\" [00:09:34]"
+  },
+  {
+    text: "State where Surha Taal (declared India's 100th Ramsar site) is located?",
+    options: ["Tripura", "Uttar Pradesh", "Odisha", "Arunachal Pradesh"],
+    answer: 1,
+    explanation: "Uttar Pradesh — from the June 2026 current affairs note: \"State where Surha Taal (declared India's 100th Ramsar site) is located.\" [00:09:45]"
+  },
+  {
+    text: "Country affected by tropical storm 'Jangmi'?",
+    options: ["Norway", "Qatar", "Kyrgyzstan", "Japan"],
+    answer: 3,
+    explanation: "Japan — from the June 2026 current affairs note: \"Country affected by tropical storm 'Jangmi'.\" [00:10:00]"
+  },
+  {
+    text: "First football player to win the Princess of Asturias Sports Award?",
+    options: ["Lionel Messi", "Lt Gen Rajiv Ghai", "Rajesh Kumar Singh", "K Satyanarayana Raju"],
+    answer: 0,
+    explanation: "Lionel Messi — from the June 2026 current affairs note: \"First football player to win the Princess of Asturias Sports Award.\" [00:10:17]"
+  },
+  {
+    text: "Winner of Norway Chess 2026?",
+    options: ["Lokhande Prashant Sitaram", "Rajesh Kumar Singh", "New Delhi (India)", "R Praggnanandhaa"],
+    answer: 3,
+    explanation: "R Praggnanandhaa became the first Indian to win the elite Norway Chess tournament, sealing the title with a final-round win over Germany's Vincent Keymer in Oslo after edging out American GM Wesley So."
+  },
+  {
+    text: "Location where Amit Shah chaired the 73rd plenary session of North Eastern Council?",
+    options: ["Indore, Madhya Pradesh", "Jammu", "New Delhi", "Shillong"],
+    answer: 3,
+    explanation: "Shillong — from the June 2026 current affairs note: \"Location where Amit Shah chaired the 73rd plenary session of North Eastern Council.\" [00:10:44]"
+  },
+  {
+    text: "Brand ambassador for Visa India's 'Bharat' campaign?",
+    options: ["Savitha Shri B", "New Delhi (India)", "Shah Rukh Khan", "Rumesh Pathirage"],
+    answer: 2,
+    explanation: "Shah Rukh Khan — from the June 2026 current affairs note: \"Brand ambassador for Visa India's 'Bharat' campaign.\" [00:11:02]"
+  },
+  {
+    text: "Second Indian woman lawyer to directly become Supreme Court judge?",
+    options: ["Saibal Chattopadhyay", "New Delhi (India)", "Venkat Subramani Mohana", "Neeraj Chopra"],
+    answer: 2,
+    explanation: "Venkat Subramani Mohana — from the June 2026 current affairs note: \"Second Indian woman lawyer to directly become Supreme Court judge.\" [00:11:12]"
+  },
+  {
+    text: "Company that launched AI-designed 'Majorana 2' quantum chip?",
+    options: ["Microsoft", "Uber", "Amazon", "Zomato"],
+    answer: 0,
+    explanation: "Majorana 2 is Microsoft's upgraded topological quantum chip. It uses a lead-based superconductor material stack that Microsoft says makes its qubits about 1,000 times more stable and much longer-lived than the first-generation Majorana 1 chip."
+  },
+  {
+    text: "Winner of Men's U-18 Asia Cup Hockey?",
+    options: ["Sweden", "Iceland", "India", "Nepal"],
+    answer: 2,
+    explanation: "India — from the June 2026 current affairs note: \"Winner of Men's U-18 Asia Cup Hockey.\" [00:11:37]"
+  },
+  {
+    text: "Youngest Indian female player to win Kosova World Table Tennis Championship?",
+    options: ["Srishti Kiran", "Smriti Mandhana", "Divyanshi Bhowmick", "Rajeev Krishna"],
+    answer: 2,
+    explanation: "Divyanshi Bhowmick — from the June 2026 current affairs note: \"Youngest Indian female player to win Kosova World Table Tennis Championship.\" [00:11:49]"
+  },
+  {
+    text: "Winner of French Open 2026 Women's Singles?",
+    options: ["Jainendra Jain", "Mirra Andreeva", "Evian-les-Bains, France", "Royal Challengers Bengaluru"],
+    answer: 1,
+    explanation: "19-year-old Mirra Andreeva won her first Grand Slam title, beating qualifier Maja Chwalinska in straight sets in the French Open 2026 women's singles final."
+  },
+  {
+    text: "Foreign university permitted to officially open branches across India?",
+    options: ["Liverpool University", "SRM University", "Myntra", "Amity University"],
+    answer: 0,
+    explanation: "Liverpool University — from the June 2026 current affairs note: \"Foreign university permitted to officially open branches across India.\" [00:12:20]"
+  },
+  {
+    text: "State that launched digital system 'HAWK' for wildlife crime management?",
+    options: ["Kerala", "Manipur", "Sikkim", "Rajasthan"],
+    answer: 0,
+    explanation: "Kerala — from the June 2026 current affairs note: \"State that launched digital system 'HAWK' for wildlife crime management.\" [00:12:40]"
+  },
+  {
+    text: "Appointed Vice Chief of Air Staff?",
+    options: ["Banwarilal Purohit", "Varun Bhardwaj", "Ashutosh Dixit", "New Delhi (India)"],
+    answer: 2,
+    explanation: "Ashutosh Dixit — from the June 2026 current affairs note: \"Appointed Vice Chief of Air Staff.\" [00:12:50]"
+  },
+  {
+    text: "Location of India's 7th Regional Meteorological Centre?",
+    options: ["Jammu", "Chandigarh", "Indore, Madhya Pradesh", "Delhi"],
+    answer: 0,
+    explanation: "Jammu — from the June 2026 current affairs note: \"Location of India's 7th Regional Meteorological Centre.\" [00:13:00]"
+  },
+  {
+    text: "State that launched statewide campaign 'Yoga 2026'?",
+    options: ["Bihar", "Maharashtra", "Andhra Pradesh", "Tamil Nadu"],
+    answer: 2,
+    explanation: "Andhra Pradesh — from the June 2026 current affairs note: \"State that launched statewide campaign 'Yoga 2026'.\" [00:13:12]"
+  },
+  {
+    text: "Location where Amit Shah inaugurated 'Sabari Sannidhanam'?",
+    options: ["New Delhi", "Puducherry", "Shillong", "Ladakh"],
+    answer: 0,
+    explanation: "New Delhi — from the June 2026 current affairs note: \"Location where Amit Shah inaugurated 'Sabari Sannidhanam'.\" [00:13:22]"
+  },
+  {
+    text: "36th State/UT to implement Ayushman Bharat PM Jan Arogya Yojana?",
+    options: ["Maharashtra", "Tamil Nadu", "West Bengal", "Mizoram"],
+    answer: 2,
+    explanation: "West Bengal — from the June 2026 current affairs note: \"36th State/UT to implement Ayushman Bharat PM Jan Arogya Yojana.\" [00:13:41]"
+  },
+  {
+    text: "Winner of SAFF Women's Championship 2026?",
+    options: ["Australia", "India", "Sweden", "Mongolia"],
+    answer: 1,
+    explanation: "India — from the June 2026 current affairs note: \"Winner of SAFF Women's Championship 2026.\" [00:13:47]"
+  },
+  {
+    text: "Winner of French Open 2026 Men's Singles?",
+    options: ["R Praggnanandhaa", "Lionel Messi", "Suraj Parasher", "Alexander Zverev"],
+    answer: 3,
+    explanation: "Alexander Zverev won his first Grand Slam title at the French Open 2026, beating Italy's Flavio Cobolli in a five-set final."
+  },
+  {
+    text: "Honored with UN Military Gender Advocate of the Year Award 2025?",
+    options: ["K Satyanarayana Raju", "Nice, France", "Abhilasha Barak", "Srishti Kiran"],
+    answer: 2,
+    explanation: "Abhilasha Barak — from the June 2026 current affairs note: \"Honored with UN Military Gender Advocate of the Year Award 2025.\" [00:14:20]"
+  },
+  {
+    text: "Winner of Monaco Grand Prix 2026?",
+    options: ["Alexander Zverev", "Smriti Mandhana", "Rajeev Krishna", "Kimi Antonelli"],
+    answer: 3,
+    explanation: "Kimi Antonelli — from the June 2026 current affairs note: \"Winner of Monaco Grand Prix 2026.\" [00:14:33]"
+  },
+  {
+    text: "Countries conducting biennial exercise 'SAREX'?",
+    options: ["Jaipur", "Japan and South Korea", "India and France", "Poonch"],
+    answer: 1,
+    explanation: "Japan and South Korea — from the June 2026 current affairs note: \"Countries conducting biennial exercise 'SAREX'.\" [00:14:39]"
+  },
+  {
+    text: "State that launched 'Singapore Special Task Force' for women's safety?",
+    options: ["Chhattisgarh", "Goa", "Bihar", "Tamil Nadu"],
+    answer: 3,
+    explanation: "Tamil Nadu — from the June 2026 current affairs note: \"State that launched 'Singapore Special Task Force' for women's safety.\" [00:14:50]"
+  },
+  {
+    text: "Winner of World Yogasana Championship 2026 in Ahmedabad?",
+    options: ["Qatar", "Japan", "Uzbekistan", "India"],
+    answer: 3,
+    explanation: "India — from the June 2026 current affairs note: \"Winner of World Yogasana Championship 2026 in Ahmedabad.\" [00:15:03]"
+  },
+  {
+    text: "Winner of 'Banker of the Year' at FE Best Banks Award 2026?",
+    options: ["Om Birla", "K Satyanarayana Raju", "Geneva, Switzerland", "Lt Gen Rajiv Ghai"],
+    answer: 1,
+    explanation: "K Satyanarayana Raju — from the June 2026 current affairs note: \"Winner of 'Banker of the Year' at FE Best Banks Award 2026.\" [00:15:18]"
+  },
+  {
+    text: "State whose GI-tagged Tezpur Litchi was exported to Dubai and Singapore?",
+    options: ["Gujarat", "Assam", "Tamil Nadu", "Meghalaya"],
+    answer: 1,
+    explanation: "Assam — from the June 2026 current affairs note: \"State whose GI-tagged Tezpur Litchi was exported to Dubai and Singapore.\" [00:15:28]"
+  },
+  {
+    text: "4th Asian player to cross the 90m mark in Javelin?",
+    options: ["Mirra Andreeva", "Lokhande Prashant Sitaram", "Rumesh Pathirage", "Geneva, Switzerland"],
+    answer: 2,
+    explanation: "Rumesh Pathirage — from the June 2026 current affairs note: \"4th Asian player to cross the 90m mark in Javelin.\" [00:15:46]"
+  },
+  {
+    text: "Appointed Chairman of Bharatiya Vidya Bhavan?",
+    options: ["Sundarraj P", "Dhiraj Seth", "K Satyanarayana Raju", "Banwarilal Purohit"],
+    answer: 3,
+    explanation: "Banwarilal Purohit — from the June 2026 current affairs note: \"Appointed Chairman of Bharatiya Vidya Bhavan.\" [00:16:00]"
+  },
+  {
+    text: "Venue of International BRICS Agriculture Summit 2026?",
+    options: ["Shillong", "Puducherry", "Indore, Madhya Pradesh", "New Delhi"],
+    answer: 2,
+    explanation: "Indore, Madhya Pradesh — from the June 2026 current affairs note: \"Venue of International BRICS Agriculture Summit 2026.\" [00:16:10]"
+  },
+  {
+    text: "Indian Navy Lieutenant Commander honored with Shaurya Chakra?",
+    options: ["Om Birla", "Suraj Parasher", "Kimi Antonelli", "Nice, France"],
+    answer: 1,
+    explanation: "Suraj Parasher — from the June 2026 current affairs note: \"Indian Navy Lieutenant Commander honored with Shaurya Chakra.\" [00:16:36]"
+  },
+  {
+    text: "Number of nuclear weapons in India according to SIPRI report?",
+    options: ["188", "190", "195", "186"],
+    answer: 1,
+    explanation: "The SIPRI Yearbook 2026 estimated India's nuclear warhead stockpile at around 190 by early 2026, up from about 180 the previous year, with roughly 12 of those warheads deployed and the rest in reserve."
+  },
+  {
+    text: "State that started 'Project Ganga'?",
+    options: ["Jammu & Kashmir", "Nagaland", "Uttar Pradesh", "Karnataka"],
+    answer: 2,
+    explanation: "Uttar Pradesh — from the June 2026 current affairs note: \"State that started 'Project Ganga'.\" [00:16:59]"
+  },
+  {
+    text: "Ranked world No. 1 in Under-13 tennis players?",
+    options: ["Shah Rukh Khan", "Banwarilal Purohit", "Srishti Kiran", "Kane Williamson (New Zealand)"],
+    answer: 2,
+    explanation: "Srishti Kiran — from the June 2026 current affairs note: \"Ranked world No. 1 in Under-13 tennis players.\" [00:17:04]"
+  },
+  {
+    text: "State government that removed the two-child norm for government jobs?",
+    options: ["Chhattisgarh", "Madhya Pradesh", "Maharashtra", "Gujarat"],
+    answer: 1,
+    explanation: "Madhya Pradesh — from the June 2026 current affairs note: \"State government that removed the two-child norm for government jobs.\" [00:17:16]"
+  },
+  {
+    text: "State that launched 'Stree Ride' initiative for women's safety?",
+    options: ["Andhra Pradesh", "Telangana", "Tripura", "Assam"],
+    answer: 1,
+    explanation: "Telangana — from the June 2026 current affairs note: \"State that launched 'Stree Ride' initiative for women's safety.\" [00:17:26]"
+  },
+  {
+    text: "Winner of the 1st Asian Individual Chess Championship 2026 in Mongolia?",
+    options: ["Sudarsan Pattnaik", "Royal Challengers Bengaluru", "Srishti Kiran", "Savitha Shri B"],
+    answer: 3,
+    explanation: "Savitha Shri B — from the June 2026 current affairs note: \"Winner of the 1st Asian Individual Chess Championship 2026 in Mongolia.\" [00:17:37]"
+  },
+  {
+    text: "Appointed Chairman of Bangladesh Cricket Board?",
+    options: ["Alexander Zverev", "Dhiraj Seth", "Jainendra Jain", "Tamim Iqbal"],
+    answer: 3,
+    explanation: "Tamim Iqbal — from the June 2026 current affairs note: \"Appointed Chairman of Bangladesh Cricket Board.\" [00:17:42]"
+  },
+  {
+    text: "Location of India's first AI-enabled hyperscale data center?",
+    options: ["Meghalaya", "Uttar Pradesh", "Gujarat", "Punjab"],
+    answer: 2,
+    explanation: "Gujarat — from the June 2026 current affairs note: \"Location of India's first AI-enabled hyperscale data center.\" [00:17:53]"
+  },
+  {
+    text: "Operation launched by Iran against Israel?",
+    options: ["Jaipur", "Operation Nasr", "CBI", "H-561"],
+    answer: 1,
+    explanation: "Operation Nasr — from the June 2026 current affairs note: \"Operation launched by Iran against Israel.\" [00:18:05]"
+  },
+  {
+    text: "Country approving the world's first commercial chip named 'Neo'?",
+    options: ["Tajikistan", "China", "Finland", "Denmark"],
+    answer: 1,
+    explanation: "China — from the June 2026 current affairs note: \"Country approving the world's first commercial chip named 'Neo'.\" [00:18:16]"
+  },
+  {
+    text: "Location where Amit Shah launched Land Port Management System named 'Vinimay'?",
+    options: ["New Delhi", "Jammu", "Shillong", "Chandigarh"],
+    answer: 0,
+    explanation: "New Delhi — from the June 2026 current affairs note: \"Location where Amit Shah launched Land Port Management System named 'Vinimay'.\" [00:18:27]"
+  },
+  {
+    text: "Partner for Road Ministry's 'Rahvir Yojana' for road accident victims?",
+    options: ["Rapido", "Microsoft", "Myntra", "Liverpool University"],
+    answer: 0,
+    explanation: "Rapido — from the June 2026 current affairs note: \"Partner for Road Ministry's 'Rahvir Yojana' for road accident victims.\" [00:18:31]"
+  },
+  {
+    text: "Host country of the 23rd FIFA World Cup 2026?",
+    options: ["Mexico", "Kazakhstan", "Norway", "Sri Lanka"],
+    answer: 0,
+    explanation: "Mexico — from the June 2026 current affairs note: \"Host country of the 23rd FIFA World Cup 2026.\" [00:18:43]"
+  },
+  {
+    text: "First city under India's 'Easy Connect' model for international travel?",
+    options: ["England and Wales", "CBI", "India and France", "Varanasi"],
+    answer: 3,
+    explanation: "Varanasi — from the June 2026 current affairs note: \"First city under India's 'Easy Connect' model for international travel.\" [00:18:48]"
+  },
+  {
+    text: "Hosts of the 10th ICC Women's T20 World Cup 2026?",
+    options: ["England and Wales", "Operation Nasr", "Yogasana", "Jawaharlal Nehru Port (Maharashtra)"],
+    answer: 0,
+    explanation: "England and Wales — from the June 2026 current affairs note: \"Hosts of the 10th ICC Women's T20 World Cup 2026.\" [00:19:01]"
+  },
+  {
+    text: "Venue of the 114th International Labour Conference?",
+    options: ["Alexander Zverev", "Kane Williamson (New Zealand)", "Geneva, Switzerland", "Mirra Andreeva"],
+    answer: 2,
+    explanation: "Geneva, Switzerland — from the June 2026 current affairs note: \"Venue of the 114th International Labour Conference.\" [00:19:13]"
+  },
+  {
+    text: "First state to recognize and promote solar-powered spinning wheels?",
+    options: ["Gujarat", "Uttar Pradesh", "Uttarakhand", "Maharashtra"],
+    answer: 1,
+    explanation: "Uttar Pradesh — from the June 2026 current affairs note: \"First state to recognize and promote solar-powered spinning wheels.\" [00:19:33]"
+  },
+  {
+    text: "Former President of which country was sentenced to 30 years in prison?",
+    options: ["Sweden", "South Korea", "Kyrgyzstan", "Finland"],
+    answer: 1,
+    explanation: "South Korea — from the June 2026 current affairs note: \"Former President of which country was sentenced to 30 years in prison.\" [00:19:38]"
+  },
+  {
+    text: "Cricketer announcing retirement from international cricket?",
+    options: ["Kane Williamson (New Zealand)", "Dhiraj Seth", "Srishti Kiran", "Neeraj Chopra"],
+    answer: 0,
+    explanation: "Kane Williamson (New Zealand) — from the June 2026 current affairs note: \"Cricketer announcing retirement from international cricket.\" [00:19:48]"
+  },
+  {
+    text: "IIT that released the world's most detailed 3D atlas of the human brain stem?",
+    options: ["IIT Madras", "IIT Roorkee", "IIT Guwahati", "IIT Bombay"],
+    answer: 0,
+    explanation: "IIT Madras — from the June 2026 current affairs note: \"IIT that released the world's most detailed 3D atlas of the human brain stem.\" [00:20:01]"
+  },
+  {
+    text: "Venue of the 13th BRICS Urbanisation Forum?",
+    options: ["Indore, Madhya Pradesh", "Shillong", "Puducherry", "New Delhi"],
+    answer: 3,
+    explanation: "New Delhi — from the June 2026 current affairs note: \"Venue of the 13th BRICS Urbanisation Forum.\" [00:20:21]"
+  },
+  {
+    text: "Country's scientists discovering the world's largest whale cemetery in Indian Ocean?",
+    options: ["China", "Uzbekistan", "India", "Slovakia"],
+    answer: 0,
+    explanation: "China — from the June 2026 current affairs note: \"Country's scientists discovering the world's largest whale cemetery in Indian Ocean.\" [00:20:32]"
+  },
+  {
+    text: "Country activating its full-time space weather monitoring satellite 'Solar 1'?",
+    options: ["America", "Singapore", "Kazakhstan", "Oman"],
+    answer: 0,
+    explanation: "America — from the June 2026 current affairs note: \"Country activating its full-time space weather monitoring satellite 'Solar 1'.\" [00:20:44]"
+  },
+  {
+    text: "Declared India's best container port?",
+    options: ["H-561", "Jawaharlal Nehru Port (Maharashtra)", "Ministry of Panchayati Raj", "CBI"],
+    answer: 1,
+    explanation: "Jawaharlal Nehru Port (Maharashtra) — from the June 2026 current affairs note: \"Declared India's best container port.\" [00:20:56]"
+  },
+  {
+    text: "World's third-largest aviation market?",
+    options: ["Venezuela", "India", "Qatar", "UK"],
+    answer: 1,
+    explanation: "India — from the June 2026 current affairs note: \"World's third-largest aviation market.\" [00:21:06]"
+  },
+  {
+    text: "33rd State to adopt National e-Vidhan Application (NeVA)?",
+    options: ["West Bengal", "Bihar", "Himachal Pradesh", "Karnataka"],
+    answer: 0,
+    explanation: "West Bengal — from the June 2026 current affairs note: \"33rd State to adopt National e-Vidhan Application (NeVA).\" [00:21:12]"
+  },
+  {
+    text: "Appointed Chief of Army Staff of India?",
+    options: ["Ashok Dinda", "Dhiraj Seth", "Bimal N. Patel", "Banwarilal Purohit"],
+    answer: 1,
+    explanation: "Dhiraj Seth — from the June 2026 current affairs note: \"Appointed Chief of Army Staff of India.\" [00:21:22]"
+  },
+  {
+    text: "First Indian to win prestigious Russia Grand Sand Masters Cup 2026?",
+    options: ["Rajeev Krishna", "Om Birla", "Lewis Hamilton", "Sudarsan Pattnaik"],
+    answer: 3,
+    explanation: "Sudarsan Pattnaik — from the June 2026 current affairs note: \"First Indian to win prestigious Russia Grand Sand Masters Cup 2026.\" [00:21:33]"
+  },
+  {
+    text: "3rd state to ban highly toxic weedicide Paraquat?",
+    options: ["Bihar", "Telangana", "Assam", "Odisha"],
+    answer: 1,
+    explanation: "Telangana — from the June 2026 current affairs note: \"3rd state to ban highly toxic weedicide Paraquat.\" [00:21:47]"
+  },
+  {
+    text: "Venue of NITI Aayog's Governing Council's 11th meeting?",
+    options: ["New Delhi", "Jammu", "Indore, Madhya Pradesh", "Chandigarh"],
+    answer: 0,
+    explanation: "New Delhi — from the June 2026 current affairs note: \"Venue of NITI Aayog's Governing Council's 11th meeting.\" [00:21:58]"
+  },
+  {
+    text: "IIT that developed portable device 'Arsenic Safe'?",
+    options: ["IIT Kanpur", "IIT Hyderabad", "IIT Bhubaneswar", "IIT Delhi"],
+    answer: 2,
+    explanation: "IIT Bhubaneswar — from the June 2026 current affairs note: \"IIT that developed portable device 'Arsenic Safe'.\" [00:22:09]"
+  },
+  {
+    text: "Location of 'Bharat Innovate Summit' inaugurated by PM Modi?",
+    options: ["Jagannath Temple", "Nice, France", "Tamim Iqbal", "R Praggnanandhaa"],
+    answer: 1,
+    explanation: "Nice, France — from the June 2026 current affairs note: \"Location of 'Bharat Innovate Summit' inaugurated by PM Modi.\" [00:22:22]"
+  },
+  {
+    text: "State approving the reinstatement of original names of 64 places?",
+    options: ["Tripura", "Uttar Pradesh", "Haryana", "Odisha"],
+    answer: 3,
+    explanation: "Odisha — from the June 2026 current affairs note: \"State approving the reinstatement of original names of 64 places.\" [00:22:34]"
+  },
+  {
+    text: "State reuniting 1470 missing people with families under 'Operation Milaap'?",
+    options: ["Assam", "Telangana", "Gujarat", "Bihar"],
+    answer: 2,
+    explanation: "Gujarat — from the June 2026 current affairs note: \"State reuniting 1470 missing people with families under 'Operation Milaap'.\" [00:22:44]"
+  },
+  {
+    text: "New Military Advisor in National Security Council Secretariat (NSCS)?",
+    options: ["New Delhi (India)", "Lt Gen Rajiv Ghai", "Lokhande Prashant Sitaram", "Rajeev Krishna"],
+    answer: 1,
+    explanation: "Lt Gen Rajiv Ghai — from the June 2026 current affairs note: \"New Military Advisor in National Security Council Secretariat (NSCS).\" [00:23:03]"
+  },
+  {
+    text: "World Bank's estimated GDP growth rate for India for FY 26-27?",
+    options: ["3.6%", "6.6%", "1.6%", "4.6%"],
+    answer: 1,
+    explanation: "6.6% — from the June 2026 current affairs note: \"World Bank's estimated GDP growth rate for India for FY 26-27.\" [00:23:15]"
+  },
+  {
+    text: "Venue of G7 Summit 2026?",
+    options: ["Evian-les-Bains, France", "Ashok Dinda", "Royal Challengers Bengaluru", "Khalilur Rahman"],
+    answer: 0,
+    explanation: "Evian-les-Bains, France — from the June 2026 current affairs note: \"Venue of G7 Summit 2026.\" [00:23:28]"
+  },
+  {
+    text: "State starting drone-based postal service?",
+    options: ["Himachal Pradesh", "Jharkhand", "Gujarat", "Haryana"],
+    answer: 0,
+    explanation: "Himachal Pradesh — from the June 2026 current affairs note: \"State starting drone-based postal service.\" [00:23:37]"
+  },
+  {
+    text: "Indian awarded EMBO Gold Medal 2026 for biology contribution?",
+    options: ["Sudarsan Pattnaik", "Gautam Dey", "Mahesh Dixit", "Neeraj Chopra"],
+    answer: 1,
+    explanation: "Gautam Dey — from the June 2026 current affairs note: \"Indian awarded EMBO Gold Medal 2026 for biology contribution.\" [00:23:43]"
+  },
+  {
+    text: "State whose 'Jadu Patia' painting got GI tag?",
+    options: ["Telangana", "Sikkim", "Tripura", "Jharkhand"],
+    answer: 3,
+    explanation: "Jharkhand — from the June 2026 current affairs note: \"State whose 'Jadu Patia' painting got GI tag.\" [00:23:56]"
+  },
+  {
+    text: "Country launching first radioligand therapy for advanced prostate cancer?",
+    options: ["Kazakhstan", "India", "USA", "Norway"],
+    answer: 1,
+    explanation: "India — from the June 2026 current affairs note: \"Country launching first radioligand therapy for advanced prostate cancer.\" [00:24:08]"
+  },
+  {
+    text: "Entity adopting first global treaty setting employment standards for gig workers?",
+    options: ["UNDP", "UNESCO", "World Bank", "ILO"],
+    answer: 3,
+    explanation: "ILO — from the June 2026 current affairs note: \"Entity adopting first global treaty setting employment standards for gig workers.\" [00:24:20]"
+  },
+  {
+    text: "State launching 'Priyadarshini' free bus travel scheme for women?",
+    options: ["Sikkim", "Uttarakhand", "Telangana", "Kerala"],
+    answer: 3,
+    explanation: "Kerala — from the June 2026 current affairs note: \"State launching 'Priyadarshini' free bus travel scheme for women.\" [00:24:31]"
+  },
+  {
+    text: "European country visited by an Indian PM for the first time?",
+    options: ["Nepal", "Kyrgyzstan", "Denmark", "Slovakia"],
+    answer: 3,
+    explanation: "Slovakia — from the June 2026 current affairs note: \"European country visited by an Indian PM for the first time.\" [00:24:42]"
+  },
+  {
+    text: "Top country in Global Peace Index 2026?",
+    options: ["Iceland", "Kyrgyzstan", "Japan", "Venezuela"],
+    answer: 0,
+    explanation: "Iceland — from the June 2026 current affairs note: \"Top country in Global Peace Index 2026.\" [00:24:53]"
+  },
+  {
+    text: "Only Indian in TIME's 100 Most Influential Athletes 2026 list?",
+    options: ["Smriti Mandhana", "Ashutosh Dixit", "Om Birla", "Bimal N. Patel"],
+    answer: 0,
+    explanation: "Smriti Mandhana — from the June 2026 current affairs note: \"Only Indian in TIME's 100 Most Influential Athletes 2026 list.\" [00:24:59]"
+  },
+  {
+    text: "State whose traditional instrument 'Sarinda' received GI tag?",
+    options: ["Kerala", "Tripura", "Manipur", "Sikkim"],
+    answer: 1,
+    explanation: "Tripura — from the June 2026 current affairs note: \"State whose traditional instrument 'Sarinda' received GI tag.\" [00:25:14]"
+  },
+  {
+    text: "Venue of Fit India Cyclothon?",
+    options: ["Shillong", "Mumbai", "Indore, Madhya Pradesh", "Jammu"],
+    answer: 1,
+    explanation: "Mumbai — from the June 2026 current affairs note: \"Venue of Fit India Cyclothon.\" [00:25:25]"
+  },
+  {
+    text: "First temple in the country to get a trademark?",
+    options: ["Evian-les-Bains, France", "Kane Williamson (New Zealand)", "Dhiraj Seth", "Jagannath Temple"],
+    answer: 3,
+    explanation: "Jagannath Temple — from the June 2026 current affairs note: \"First temple in the country to get a trademark.\" [00:25:31]"
+  },
+  {
+    text: "Year by which India targets 155 GW wind energy capacity?",
+    options: ["2035", "2034", "2039", "2038"],
+    answer: 0,
+    explanation: "2035 — from the June 2026 current affairs note: \"Year by which India targets 155 GW wind energy capacity.\" [00:25:38]"
+  },
+  {
+    text: "Inaugurated 'Viksit Bharat Yuva Sansad 2026' in New Delhi?",
+    options: ["Om Birla", "Suraj Parasher", "Abhilasha Barak", "Jainendra Jain"],
+    answer: 0,
+    explanation: "Om Birla — from the June 2026 current affairs note: \"Inaugurated 'Viksit Bharat Yuva Sansad 2026' in New Delhi.\" [00:25:44]"
+  },
+  {
+    text: "Countries signing 'ATL Bridge' agreement?",
+    options: ["Jaipur", "India and France", "Unlocking the Potential of Administrative Data", "V.O. Chidambaranar Port"],
+    answer: 1,
+    explanation: "India and France — from the June 2026 current affairs note: \"Countries signing 'ATL Bridge' agreement.\" [00:25:57]"
+  },
+  {
+    text: "Country awarding its highest civilian honour 'Order of the White Double Cross' to PM Modi?",
+    options: ["Uzbekistan", "Slovakia", "UAE", "Mongolia"],
+    answer: 1,
+    explanation: "Slovakia — from the June 2026 current affairs note: \"Country awarding its highest civilian honour 'Order of the White Double Cross' to PM Modi.\" [00:26:08]"
+  },
+  {
+    text: "State increasing cooperative crop loan waiver limit to ₹75,000?",
+    options: ["Sikkim", "Himachal Pradesh", "Telangana", "Tamil Nadu"],
+    answer: 3,
+    explanation: "Tamil Nadu — from the June 2026 current affairs note: \"State increasing cooperative crop loan waiver limit to ₹75,000.\" [00:26:19]"
+  },
+  {
+    text: "State for which Defence Ministry approved forming NCC State Directorate?",
+    options: ["Madhya Pradesh", "Himachal Pradesh", "Jharkhand", "Assam"],
+    answer: 2,
+    explanation: "Jharkhand — from the June 2026 current affairs note: \"State for which Defence Ministry approved forming NCC State Directorate.\" [00:26:32]"
+  },
+  {
+    text: "Country creating world's first working nuclear clocks using Thorium-229 (with Europe)?",
+    options: ["Kazakhstan", "Bhutan", "Canada", "China"],
+    answer: 3,
+    explanation: "China — from the June 2026 current affairs note: \"Country creating world's first working nuclear clocks using Thorium-229 (with Europe).\" [00:26:44]"
+  },
+  {
+    text: "Appointed Inspector General of NIA?",
+    options: ["Jagannath Temple", "Tushar Mehta", "Sundarraj P", "New Delhi (India)"],
+    answer: 2,
+    explanation: "Sundarraj P — from the June 2026 current affairs note: \"Appointed Inspector General of NIA.\" [00:26:49]"
+  },
+  {
+    text: "Ranked first in Asia's AI startup cluster?",
+    options: ["Harshavardhan", "Beijing", "Varanasi", "England and Wales"],
+    answer: 1,
+    explanation: "Beijing — from the June 2026 current affairs note: \"Ranked first in Asia's AI startup cluster.\" [00:27:00]"
+  },
+  {
+    text: "Location of India's tallest wind turbine?",
+    options: ["Gujarat", "Odisha", "Tripura", "Karnataka"],
+    answer: 3,
+    explanation: "Karnataka — from the June 2026 current affairs note: \"Location of India's tallest wind turbine.\" [00:27:06]"
+  },
+  {
+    text: "State whose traditional instrument 'Bihu Pepa' got GI tag?",
+    options: ["Chhattisgarh", "Meghalaya", "Punjab", "Assam"],
+    answer: 3,
+    explanation: "Assam — from the June 2026 current affairs note: \"State whose traditional instrument 'Bihu Pepa' got GI tag.\" [00:27:18]"
+  },
+  {
+    text: "State with 11 schools in the national list of Clean and Green School Ranking?",
+    options: ["Maharashtra", "Meghalaya", "Mizoram", "Uttar Pradesh"],
+    answer: 3,
+    explanation: "Uttar Pradesh — from the June 2026 current affairs note: \"State with 11 schools in the national list of Clean and Green School Ranking.\" [00:27:28]"
+  },
+  {
+    text: "Appointed Chairman of National Statistical Commission?",
+    options: ["Varun Bhardwaj", "Saibal Chattopadhyay", "Mirra Andreeva", "Suraj Parasher"],
+    answer: 1,
+    explanation: "Saibal Chattopadhyay — from the June 2026 current affairs note: \"Appointed Chairman of National Statistical Commission.\" [00:27:35]"
+  },
+  {
+    text: "Country setting minimum age of 15 for using social media?",
+    options: ["Australia", "Bangladesh", "UAE", "Uzbekistan"],
+    answer: 2,
+    explanation: "UAE — from the June 2026 current affairs note: \"Country setting minimum age of 15 for using social media.\" [00:27:46]"
+  },
+  {
+    text: "India's top educational institute in QS World University Rankings 2027?",
+    options: ["IIT Delhi", "IIT Guwahati", "IIT Bhubaneswar", "IIT Kharagpur"],
+    answer: 0,
+    explanation: "IIT Delhi — from the June 2026 current affairs note: \"India's top educational institute in QS World University Rankings 2027.\" [00:27:58]"
+  },
+  {
+    text: "Number of countries adopting 'Mombasa Declaration' at 11th Our Ocean Conference?",
+    options: ["12", "19", "20", "15"],
+    answer: 3,
+    explanation: "15 — from the June 2026 current affairs note: \"Number of countries adopting 'Mombasa Declaration' at 11th Our Ocean Conference.\" [00:28:11]"
+  },
+  {
+    text: "State whose 'Jasdan Pathari Sandok' received GI tag?",
+    options: ["Uttar Pradesh", "Gujarat", "Madhya Pradesh", "Maharashtra"],
+    answer: 1,
+    explanation: "Gujarat — from the June 2026 current affairs note: \"State whose 'Jasdan Pathari Sandok' received GI tag.\" [00:28:24]"
+  },
+  {
+    text: "State where researchers found 1.5 crore-year-old fossils?",
+    options: ["Kerala", "Odisha", "Uttar Pradesh", "Meghalaya"],
+    answer: 1,
+    explanation: "Odisha — from the June 2026 current affairs note: \"State where researchers found 1.5 crore-year-old fossils.\" [00:28:29]"
+  },
+  {
+    text: "Venue of India's major international exhibition 'Bharat Belton 2026'?",
+    options: ["Jammu", "New Delhi", "Ladakh", "Mumbai"],
+    answer: 1,
+    explanation: "New Delhi — from the June 2026 current affairs note: \"Venue of India's major international exhibition 'Bharat Belton 2026'.\" [00:28:43]"
+  },
+  {
+    text: "Rank of Bengaluru's government AI startup 'Sarvam AI' as India's unicorn?",
+    options: ["130th", "127th", "134th", "135th"],
+    answer: 0,
+    explanation: "130th — from the June 2026 current affairs note: \"Rank of Bengaluru's government AI startup 'Sarvam AI' as India's unicorn.\" [00:28:47]"
+  },
+  {
+    text: "First Central Asian country to join New Development Bank (NDB)?",
+    options: ["Uzbekistan", "Malaysia", "South Korea", "France"],
+    answer: 0,
+    explanation: "Uzbekistan — from the June 2026 current affairs note: \"First Central Asian country to join New Development Bank (NDB).\" [00:29:04]"
+  },
+  {
+    text: "Location of India's first Nuclear Engineering Design Excellence Centre?",
+    options: ["IISc Bangalore", "IIT Kanpur", "IIT Hyderabad", "IIT Kharagpur"],
+    answer: 2,
+    explanation: "IIT Hyderabad — from the June 2026 current affairs note: \"Location of India's first Nuclear Engineering Design Excellence Centre.\" [00:29:16]"
+  },
+  {
+    text: "Hovercraft inducted by ICG in Goa for coastal security?",
+    options: ["Poonch", "Ministry of Panchayati Raj", "H-561", "Vitamin D Day"],
+    answer: 2,
+    explanation: "H-561 — from the June 2026 current affairs note: \"Hovercraft inducted by ICG in Goa for coastal security.\" [00:29:29]"
+  },
+  {
+    text: "Host country of military exercise 'Khaan Quest'?",
+    options: ["Sri Lanka", "Kazakhstan", "Mongolia", "South Korea"],
+    answer: 2,
+    explanation: "Mongolia — from the June 2026 current affairs note: \"Host country of military exercise 'Khaan Quest'.\" [00:29:52]"
+  },
+  {
+    text: "Indian city ranked 18th in World's Best Arts & Culture Cities?",
+    options: ["Beijing", "Jaipur", "Kempegowda International Airport", "England and Wales"],
+    answer: 1,
+    explanation: "Jaipur — from the June 2026 current affairs note: \"Indian city ranked 18th in World's Best Arts & Culture Cities.\" [00:30:03]"
+  },
+  {
+    text: "First traditional Hindu temple to be inaugurated in?",
+    options: ["Venezuela", "Israel", "Finland", "France"],
+    answer: 3,
+    explanation: "France — from the June 2026 current affairs note: \"First traditional Hindu temple to be inaugurated in.\" [00:30:08]"
+  },
+  {
+    text: "Host country of military exercise 'Pitch Black 2026'?",
+    options: ["Australia", "Bhutan", "Norway", "UK"],
+    answer: 0,
+    explanation: "Australia — from the June 2026 current affairs note: \"Host country of military exercise 'Pitch Black 2026'.\" [00:30:15]"
+  },
+  {
+    text: "Only Indian company in WIPO's Global Top 20 Patent Ranking?",
+    options: ["Jio", "Poonch", "V.O. Chidambaranar Port", "Unlocking the Potential of Administrative Data"],
+    answer: 0,
+    explanation: "Jio — from the June 2026 current affairs note: \"Only Indian company in WIPO's Global Top 20 Patent Ranking.\" [00:30:26]"
+  },
+  {
+    text: "Day declared on June 21 by IMA & Abbott to raise awareness?",
+    options: ["Avyana Mehta, Ariana Agarwal, and Vivan Chhawchharia", "Vitamin D Day", "Jawaharlal Nehru Port (Maharashtra)", "Ministry of Panchayati Raj"],
+    answer: 1,
+    explanation: "Vitamin D Day — from the June 2026 current affairs note: \"Day declared on June 21 by IMA & Abbott to raise awareness.\" [00:30:37]"
+  },
+  {
+    text: "Indian appointed as judge at the International Tribunal for the Law of the Sea?",
+    options: ["Bimal N. Patel", "Evian-les-Bains, France", "Mirra Andreeva", "Venkat Subramani Mohana"],
+    answer: 0,
+    explanation: "Bimal N. Patel — from the June 2026 current affairs note: \"Indian appointed as judge at the International Tribunal for the Law of the Sea.\" [00:30:50]"
+  },
+  {
+    text: "India's rank in WEF Energy Transition Index?",
+    options: ["70th", "65th", "68th", "75th"],
+    answer: 0,
+    explanation: "70th — from the June 2026 current affairs note: \"India's rank in WEF Energy Transition Index.\" [00:31:06]"
+  },
+  {
+    text: "Location of the first fully women-operated police station?",
+    options: ["Delhi", "Puducherry", "Chandigarh", "Mumbai"],
+    answer: 0,
+    explanation: "Delhi — from the June 2026 current affairs note: \"Location of the first fully women-operated police station.\" [00:31:18]"
+  },
+  {
+    text: "Highest wicket-taker in women's T20I cricket?",
+    options: ["Neeraj Chopra", "Deepti Sharma", "Abhilasha Barak", "Divyanshi Bhowmick"],
+    answer: 1,
+    explanation: "Deepti Sharma — from the June 2026 current affairs note: \"Highest wicket-taker in women's T20I cricket.\" [00:31:30]"
+  },
+  {
+    text: "Winner of 2nd South Asian Throwball Championship 2026 in Ranchi?",
+    options: ["India", "Israel", "America", "Uzbekistan"],
+    answer: 0,
+    explanation: "India — from the June 2026 current affairs note: \"Winner of 2nd South Asian Throwball Championship 2026 in Ranchi.\" [00:31:36]"
+  },
+  {
+    text: "Winner of Barcelona Grand Prix 2026?",
+    options: ["Om Birla", "Lewis Hamilton", "Alexander Zverev", "Abhilasha Barak"],
+    answer: 1,
+    explanation: "Lewis Hamilton — from the June 2026 current affairs note: \"Winner of Barcelona Grand Prix 2026.\" [00:31:47]"
+  },
+  {
+    text: "Indian honored with Wolf Prize in Physics?",
+    options: ["Jainendra Jain", "Ashutosh Dixit", "Nice, France", "R Praggnanandhaa"],
+    answer: 0,
+    explanation: "Jainendra Jain — from the June 2026 current affairs note: \"Indian honored with Wolf Prize in Physics.\" [00:31:54]"
+  },
+  {
+    text: "Venue of the 2-day BRICS Security Summit?",
+    options: ["New Delhi", "Indore, Madhya Pradesh", "Chandigarh", "Puducherry"],
+    answer: 0,
+    explanation: "New Delhi — from the June 2026 current affairs note: \"Venue of the 2-day BRICS Security Summit.\" [00:32:01]"
+  },
+  {
+    text: "Appointed Solicitor General of India?",
+    options: ["Suruchi Inder Singh", "Khalilur Rahman", "Tushar Mehta", "Nice, France"],
+    answer: 2,
+    explanation: "Tushar Mehta — from the June 2026 current affairs note: \"Appointed Solicitor General of India.\" [00:32:11]"
+  },
+  {
+    text: "State of Qadian-Beas railway line project?",
+    options: ["Punjab", "Jammu & Kashmir", "Manipur", "Uttarakhand"],
+    answer: 0,
+    explanation: "Punjab — from the June 2026 current affairs note: \"State of Qadian-Beas railway line project.\" [00:32:16]"
+  },
+  {
+    text: "First female cricketer in the world to play 200 T20I matches?",
+    options: ["Harmanpreet Kaur", "Suruchi Inder Singh", "Shah Rukh Khan", "Venkat Subramani Mohana"],
+    answer: 0,
+    explanation: "Harmanpreet Kaur — from the June 2026 current affairs note: \"First female cricketer in the world to play 200 T20I matches.\" [00:32:30]"
+  },
+  {
+    text: "Player with most goals in Football World Cup?",
+    options: ["Mirra Andreeva", "Lionel Messi", "Ashok Dinda", "Gautam Dey"],
+    answer: 1,
+    explanation: "Lionel Messi — from the June 2026 current affairs note: \"Player with most goals in Football World Cup.\" [00:32:36]"
+  },
+  {
+    text: "Winner of FIH Nations Cup 2026?",
+    options: ["India", "Oman", "South Korea", "Tajikistan"],
+    answer: 0,
+    explanation: "India — from the June 2026 current affairs note: \"Winner of FIH Nations Cup 2026.\" [00:32:47]"
+  },
+  {
+    text: "State whose 'Khurasani Tamarind' received GI tag?",
+    options: ["Assam", "Odisha", "Kerala", "Madhya Pradesh"],
+    answer: 3,
+    explanation: "Madhya Pradesh — from the June 2026 current affairs note: \"State whose 'Khurasani Tamarind' received GI tag.\" [00:32:53]"
+  },
+  {
+    text: "Border district honored with SKOCH Award in New Delhi?",
+    options: ["England and Wales", "Jio", "Beijing", "Poonch"],
+    answer: 3,
+    explanation: "Poonch — from the June 2026 current affairs note: \"Border district honored with SKOCH Award in New Delhi.\" [00:33:04]"
+  },
+  {
+    text: "UT banning single-use plastic and littering?",
+    options: ["Mumbai", "Chandigarh", "Lucknow", "Ladakh"],
+    answer: 3,
+    explanation: "Ladakh — from the June 2026 current affairs note: \"UT banning single-use plastic and littering.\" [00:33:16]"
+  },
+  {
+    text: "Best Male Athlete of the Year 2026?",
+    options: ["Smriti Mandhana", "Neeraj Chopra", "Banwarilal Purohit", "Suruchi Inder Singh"],
+    answer: 1,
+    explanation: "Neeraj Chopra — from the June 2026 current affairs note: \"Best Male Athlete of the Year 2026.\" [00:33:21]"
+  },
+  {
+    text: "Chennai Petroleum Corporation Limited (CPCL) became which number Navratna company?",
+    options: ["32th", "28th", "23th", "25th"],
+    answer: 1,
+    explanation: "28th — from the June 2026 current affairs note: \"Chennai Petroleum Corporation Limited (CPCL) became which number Navratna company.\" [00:33:34]"
+  },
+  {
+    text: "6th fully literate state in India under ULLAS initiative?",
+    options: ["Uttarakhand", "Punjab", "Karnataka", "Manipur"],
+    answer: 0,
+    explanation: "Uttarakhand — from the June 2026 current affairs note: \"6th fully literate state in India under ULLAS initiative.\" [00:33:44]"
+  },
+  {
+    text: "World's largest ship recycling country?",
+    options: ["India", "Oman", "Saudi Arabia", "Kazakhstan"],
+    answer: 0,
+    explanation: "India — from the June 2026 current affairs note: \"World's largest ship recycling country.\" [00:33:50]"
+  },
+  {
+    text: "State setting up India's first 3D printed artificial reef module?",
+    options: ["Nagaland", "Gujarat", "Goa", "Tamil Nadu"],
+    answer: 3,
+    explanation: "Tamil Nadu — from the June 2026 current affairs note: \"State setting up India's first 3D printed artificial reef module.\" [00:34:00]"
+  },
+  {
+    text: "Location of India's first private gold mine (Kurnool) to start commercial operations?",
+    options: ["Bihar", "Haryana", "Andhra Pradesh", "Tripura"],
+    answer: 2,
+    explanation: "Andhra Pradesh — from the June 2026 current affairs note: \"Location of India's first private gold mine (Kurnool) to start commercial operations.\" [00:34:06]"
+  },
+  {
+    text: "Ministry launching 'Nirbhay Chetna' program?",
+    options: ["Japan and South Korea", "England and Wales", "Unlocking the Potential of Administrative Data", "Ministry of Panchayati Raj"],
+    answer: 3,
+    explanation: "Ministry of Panchayati Raj — from the June 2026 current affairs note: \"Ministry launching 'Nirbhay Chetna' program.\" [00:34:18]"
+  },
+  {
+    text: "Country declaring emergency due to devastating earthquake?",
+    options: ["Venezuela", "Singapore", "USA", "China"],
+    answer: 0,
+    explanation: "Venezuela — from the June 2026 current affairs note: \"Country declaring emergency due to devastating earthquake.\" [00:34:29]"
+  },
+  {
+    text: "Location of Kheer Bhawani fair?",
+    options: ["Jammu & Kashmir", "Sikkim", "Odisha", "West Bengal"],
+    answer: 0,
+    explanation: "Jammu & Kashmir — from the June 2026 current affairs note: \"Location of Kheer Bhawani fair.\" [00:34:34]"
+  },
+  {
+    text: "India's rank in QS World Future Skills Index 2027?",
+    options: ["11th", "17th", "16th", "13th"],
+    answer: 3,
+    explanation: "13th — from the June 2026 current affairs note: \"India's rank in QS World Future Skills Index 2027.\" [00:34:40]"
+  },
+  {
+    text: "Indian honored with Global Prestige Award in UK Parliament?",
+    options: ["Unlocking the Potential of Administrative Data", "Harshavardhan", "Poonch", "Jawaharlal Nehru Port (Maharashtra)"],
+    answer: 1,
+    explanation: "Harshavardhan — from the June 2026 current affairs note: \"Indian honored with Global Prestige Award in UK Parliament.\" [00:34:51]"
+  },
+  {
+    text: "State launching Shri Ambabai Temple Development Project?",
+    options: ["Tripura", "Maharashtra", "Odisha", "Manipur"],
+    answer: 1,
+    explanation: "Maharashtra — from the June 2026 current affairs note: \"State launching Shri Ambabai Temple Development Project.\" [00:34:58]"
+  },
+  {
+    text: "27th member country of International Big Cat Alliance?",
+    options: ["Slovakia", "China", "Bangladesh", "Uzbekistan"],
+    answer: 2,
+    explanation: "Bangladesh became the 27th member of the International Big Cat Alliance (IBCA), an India-launched treaty body working to conserve seven big cat species. The move is notable since the two countries share the Sundarbans, key habitat for the Royal Bengal Tiger."
+  },
+  {
+    text: "Agency launching 'Operation Chakra-VI' against digital arrest fraud network?",
+    options: ["Varanasi", "CBI", "England and Wales", "Avyana Mehta, Ariana Agarwal, and Vivan Chhawchharia"],
+    answer: 1,
+    explanation: "CBI — from the June 2026 current affairs note: \"Agency launching 'Operation Chakra-VI' against digital arrest fraud network.\" [00:35:14]"
+  },
+  {
+    text: "Head of Vision 2028 program and fast bowling coach appointed by CAB?",
+    options: ["Royal Challengers Bengaluru", "Lokhande Prashant Sitaram", "Dhiraj Seth", "Ashok Dinda"],
+    answer: 3,
+    explanation: "Ashok Dinda — from the June 2026 current affairs note: \"Head of Vision 2028 program and fast bowling coach appointed by CAB.\" [00:35:33]"
+  },
+  {
+    text: "Venue of Hemis Festival 2026?",
+    options: ["Lucknow", "Mumbai", "Ladakh", "Delhi"],
+    answer: 2,
+    explanation: "Ladakh — from the June 2026 current affairs note: \"Venue of Hemis Festival 2026.\" [00:35:47]"
+  },
+  {
+    text: "First major Indian port to use Enterprise AI?",
+    options: ["Vitamin D Day", "V.O. Chidambaranar Port", "Yogasana", "Jawaharlal Nehru Port (Maharashtra)"],
+    answer: 1,
+    explanation: "V.O. Chidambaranar Port — from the June 2026 current affairs note: \"First major Indian port to use Enterprise AI.\" [00:35:53]"
+  },
+  {
+    text: "Football association suspended by FIFA?",
+    options: ["Nepal", "France", "Mexico", "Denmark"],
+    answer: 0,
+    explanation: "Nepal — from the June 2026 current affairs note: \"Football association suspended by FIFA.\" [00:36:04]"
+  },
+  {
+    text: "World's third most family-friendly airport?",
+    options: ["Unlocking the Potential of Administrative Data", "Beijing", "Kempegowda International Airport", "CBI"],
+    answer: 2,
+    explanation: "Kempegowda International Airport — from the June 2026 current affairs note: \"World's third most family-friendly airport.\" [00:36:18]"
+  },
+  {
+    text: "Country where new spider species 'Ballista Spider' was discovered?",
+    options: ["Australia", "Venezuela", "Tajikistan", "South Korea"],
+    answer: 0,
+    explanation: "Australia — from the June 2026 current affairs note: \"Country where new spider species 'Ballista Spider' was discovered.\" [00:36:31]"
+  },
+  {
+    text: "Venue of 12th India-EU Human Rights Dialogue?",
+    options: ["Shillong", "New Delhi", "Puducherry", "Jammu"],
+    answer: 1,
+    explanation: "New Delhi — from the June 2026 current affairs note: \"Venue of 12th India-EU Human Rights Dialogue.\" [00:36:37]"
+  },
+  {
+    text: "State where Sikhna Jwalao National Park (famous for golden langurs) is located?",
+    options: ["Arunachal Pradesh", "Assam", "Chhattisgarh", "West Bengal"],
+    answer: 1,
+    explanation: "Assam — from the June 2026 current affairs note: \"State where Sikhna Jwalao National Park (famous for golden langurs) is located.\" [00:36:44]"
+  },
+  {
+    text: "Appointed new Director of Intelligence Bureau?",
+    options: ["Banwarilal Purohit", "Sundarraj P", "Srishti Kiran", "Mahesh Dixit"],
+    answer: 3,
+    explanation: "Mahesh Dixit — from the June 2026 current affairs note: \"Appointed new Director of Intelligence Bureau.\" [00:36:56]"
+  },
+  {
+    text: "Supercomputer 'Line Sign' declared as the world's fastest belongs to?",
+    options: ["Tushar Mehta", "New Delhi (India)", "Lewis Hamilton", "Nice, France"],
+    answer: 1,
+    explanation: "New Delhi (India) — from the June 2026 current affairs note: \"Supercomputer 'Line Sign' declared as the world's fastest belongs to.\" [00:37:05]"
+  },
+  {
+    text: "Theme of National Statistics Day (June 29)?",
+    options: ["Jawaharlal Nehru Port (Maharashtra)", "Unlocking the Potential of Administrative Data", "Yogasana", "Jio"],
+    answer: 1,
+    explanation: "Unlocking the Potential of Administrative Data — from the June 2026 current affairs note: \"Theme of National Statistics Day (June 29).\" [00:37:22]"
+  }
+];
+
+// ════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════
+let qStatus = [], userAnswers = [], bookmarks = [];
+let current = 0, score = 0, correct = 0, wrong = 0, skipped = 0;
+let answered = false;
+let streak = 0, maxStreak = 0, fontScale = 1;
+let timerInterval = null, timeLeft = 60;
+let totalSeconds = 0, totalTimerInterval = null;
+let drawerFilter = 'all';
+let reviewMode = false, reviewQueue = [], reviewIdx = 0;
+
+// ── CLOCK ──
+function updateClock() {
+  const d = new Date();
+  document.getElementById('clock').textContent =
+    d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+}
+updateClock(); setInterval(updateClock, 10000);
+
+// ── INIT ──
+function initApp() {
+  document.getElementById('countChip').textContent = `📝 ${QUESTIONS.length} Questions`;
+  document.getElementById('progressText').textContent = `0 / ${QUESTIONS.length}`;
+  document.getElementById('finalDenom').textContent = `out of ${QUESTIONS.length}`;
+}
+
+// ── START ──
+function startQuiz() {
+  if (QUESTIONS.length === 0) { alert("QUESTIONS array is empty! Please add questions."); return; }
+  current = 0; score = 0; correct = 0; wrong = 0; skipped = 0; streak = 0; maxStreak = 0; totalSeconds = 0;
+  qStatus     = Array(QUESTIONS.length).fill('unseen');
+  userAnswers = Array(QUESTIONS.length).fill(-1);
+  bookmarks   = Array(QUESTIONS.length).fill(false);
+  reviewMode  = false;
+  document.getElementById('splashScreen').style.display = 'none';
+  document.getElementById('quizScreen').style.display = 'flex';
+  document.getElementById('scoreLabel').textContent = 'Score: 0';
+  document.getElementById('reviewBanner').classList.remove('show');
+  document.getElementById('scoreArc').style.strokeDashoffset = '314.16';
+  startTotalTimer();
+  loadQuestion();
+}
+
+// ── TOTAL TIMER ──
+function startTotalTimer() { clearInterval(totalTimerInterval); totalTimerInterval = setInterval(() => { totalSeconds++; }, 1000); }
+function stopTotalTimer()  { clearInterval(totalTimerInterval); }
+
+// ── PER-QUESTION TIMER ──
+function startTimer() {
+  clearInterval(timerInterval);
+  if (answered) return;
+  timeLeft = 60;
+  updateTimerUI();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerUI();
+    if (timeLeft <= 0) { clearInterval(timerInterval); autoTimeOut(); }
+  }, 1000);
+}
+function stopTimer() { clearInterval(timerInterval); }
+
+function updateTimerUI() {
+  const fill = document.getElementById('timerFill');
+  const text = document.getElementById('timerText');
+  fill.style.width = (timeLeft / 60 * 100) + '%';
+  text.textContent = timeLeft;
+  fill.className = 'timer-fill' + (timeLeft <= 10 ? ' danger' : timeLeft <= 20 ? ' warning' : '');
+  text.className = 'timer-text' + (timeLeft <= 10 ? ' danger' : '');
+}
+
+function autoTimeOut() {
+  if (answered) return;
+  answered = true;
+  const realIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+  qStatus[realIdx] = 'wrong'; wrong++;
+  streak = 0; updateStreakUI();
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
+  const cb = btns[QUESTIONS[realIdx].answer];
+  if (cb) { cb.classList.add('reveal-correct'); cb.querySelector('.opt-icon').textContent = '✓'; cb.querySelector('.opt-icon').style.opacity = '1'; cb.querySelector('.opt-icon').style.color = '#3B6D11'; }
+  showToast('⏱ Time Up!');
+  showExplanation();
+}
+
+// ── LOAD QUESTION ──
+function loadQuestion() {
+  const realIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+  if (!reviewMode && current >= QUESTIONS.length) { endQuiz(); return; }
+  if (reviewMode && reviewIdx >= reviewQueue.length) { endReview(); return; }
+
+  const q = QUESTIONS[realIdx];
+  const alreadyAnswered = (qStatus[realIdx] === 'correct' || qStatus[realIdx] === 'wrong');
+  answered = alreadyAnswered;
+
+  document.getElementById('qNum').textContent = reviewMode
+    ? `Review ${reviewIdx+1} of ${reviewQueue.length}`
+    : `Question ${realIdx+1} of ${QUESTIONS.length}`;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qHint').textContent = q.hint || '';
+  document.getElementById('progressFill').style.width = reviewMode
+    ? (reviewIdx / reviewQueue.length * 100) + '%'
+    : (realIdx / QUESTIONS.length * 100) + '%';
+  document.getElementById('progressText').textContent = reviewMode
+    ? `${reviewIdx} / ${reviewQueue.length}`
+    : `${realIdx} / ${QUESTIONS.length}`;
+  document.getElementById('explanationBox').classList.remove('show');
+  document.getElementById('nextBtn').classList.remove('show');
+
+  const bm = document.getElementById('bookmarkBtn');
+  bm.classList.toggle('active', bookmarks[realIdx]);
+
+  // Timer reset visual
+  const fill = document.getElementById('timerFill');
+  fill.style.transition = 'none'; fill.style.width = '100%'; fill.className = 'timer-fill';
+  document.getElementById('timerText').textContent = '60';
+  document.getElementById('timerText').className = 'timer-text';
+  setTimeout(() => { fill.style.transition = 'width 1s linear'; }, 50);
+
+  // Build options
+  const list = document.getElementById('optionsList');
+  list.innerHTML = '';
+  ['A','B','C','D'].forEach((lbl, i) => {
+    if (q.options[i] !== undefined) {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerHTML = `<div class="opt-label">${lbl}</div><div class="opt-text">${q.options[i]}</div><div class="opt-icon"></div>`;
+      btn.onclick = () => selectOption(i, btn);
+      list.appendChild(btn);
+    }
+  });
+
+  document.getElementById('prevBtn').disabled = reviewMode ? (reviewIdx === 0) : (realIdx === 0);
+  document.getElementById('skipNextBtn').disabled = reviewMode ? (reviewIdx >= reviewQueue.length - 1) : (realIdx >= QUESTIONS.length - 1);
+
+  const qc = document.getElementById('questionCard');
+  qc.style.animation = 'none'; void qc.offsetWidth; qc.style.animation = '';
+  document.getElementById('questionWrap').scrollTop = 0;
+
+  if (alreadyAnswered) {
+    stopTimer();
+    document.getElementById('timerFill').style.width = '0%';
+    document.getElementById('timerText').textContent = '✓';
+    restoreState();
+  } else {
+    startTimer();
+  }
+}
+
+// ── SELECT OPTION ──
+function selectOption(selIdx, btn) {
+  if (answered) return;
+  answered = true;
+  stopTimer();
+  const realIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+  userAnswers[realIdx] = selIdx;
+  const q = QUESTIONS[realIdx];
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
+
+  if (selIdx === q.answer) {
+    btn.classList.add('correct');
+    btn.querySelector('.opt-icon').textContent = '✓';
+    if (qStatus[realIdx] !== 'correct') { score++; correct++; }
+    qStatus[realIdx] = 'correct';
+    streak++; if (streak > maxStreak) maxStreak = streak;
+    playSound(true);
+  } else {
+    btn.classList.add('wrong');
+    btn.querySelector('.opt-icon').textContent = '✗';
+    if (qStatus[realIdx] !== 'wrong' && qStatus[realIdx] !== 'correct') wrong++;
+    qStatus[realIdx] = 'wrong';
+    streak = 0;
+    const cb = btns[q.answer];
+    if (cb) { cb.classList.add('reveal-correct'); cb.querySelector('.opt-icon').textContent = '✓'; cb.querySelector('.opt-icon').style.opacity = '1'; cb.querySelector('.opt-icon').style.color = '#3B6D11'; }
+    playSound(false);
+  }
+  document.getElementById('scoreLabel').textContent = `Score: ${score}`;
+  updateStreakUI();
+  showExplanation();
+}
+
+// ── STREAK ──
+function updateStreakUI() {
+  document.getElementById('streakNum').textContent = streak;
+  document.getElementById('streakBadge').classList.toggle('show', streak >= 3);
+}
+
+// ── SOUND ──
+function playSound(ok) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.setValueAtTime(ok ? 880 : 220, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(ok ? 1320 : 110, ctx.currentTime + .15);
+    gain.gain.setValueAtTime(.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + .3);
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + .3);
+  } catch(e) {}
+}
+
+// ── EXPLANATION ──
+function showExplanation() {
+  const realIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+  const q = QUESTIONS[realIdx];
+  document.getElementById('expText').textContent  = q.explanation || '';
+  document.getElementById('expHindi').textContent = q.hindi || '';
+  document.getElementById('explanationBox').classList.add('show');
+  const nb = document.getElementById('nextBtn');
+  nb.classList.add('show');
+  const isLast = reviewMode ? (reviewIdx + 1 >= reviewQueue.length) : (current + 1 >= QUESTIONS.length);
+  nb.innerHTML = isLast ? '🏁 See Results'
+    : `Next Question <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+}
+
+// ── NEXT ──
+function nextQuestion() {
+  const realIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+  if (!answered && !reviewMode && qStatus[realIdx] === 'unseen') { qStatus[realIdx] = 'skipped'; skipped++; }
+  if (reviewMode) { reviewIdx++; } else { current++; }
+  loadQuestion();
+}
+
+// ── PREV ──
+function prevQuestion() {
+  if (reviewMode) { if (reviewIdx > 0) { reviewIdx--; loadQuestion(); } return; }
+  if (current <= 0) return;
+  if (!answered && qStatus[current] === 'unseen') { qStatus[current] = 'skipped'; skipped++; }
+  current--;
+  loadQuestion();
+}
+
+// ── RESTORE STATE ──
+function restoreState() {
+  const realIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+  const q = QUESTIONS[realIdx];
+  const status = qStatus[realIdx];
+  const selIdx = userAnswers[realIdx];
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
+  if (status === 'correct') {
+    const cb = btns[q.answer];
+    if (cb) { cb.classList.add('correct'); cb.querySelector('.opt-icon').textContent = '✓'; }
+  } else if (status === 'wrong') {
+    if (selIdx >= 0 && btns[selIdx]) { btns[selIdx].classList.add('wrong'); btns[selIdx].querySelector('.opt-icon').textContent = '✗'; }
+    const cb = btns[q.answer];
+    if (cb) { cb.classList.add('reveal-correct'); cb.querySelector('.opt-icon').textContent = '✓'; cb.querySelector('.opt-icon').style.opacity = '1'; cb.querySelector('.opt-icon').style.color = '#3B6D11'; }
+  }
+  showExplanation();
+}
+
+// ── BOOKMARK ──
+function toggleBookmark() {
+  const realIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+  bookmarks[realIdx] = !bookmarks[realIdx];
+  document.getElementById('bookmarkBtn').classList.toggle('active', bookmarks[realIdx]);
+  showToast(bookmarks[realIdx] ? '🔖 Bookmarked!' : 'Bookmark removed');
+}
+
+// ── FONT SIZE ──
+function changeFontSize(dir) {
+  fontScale = Math.min(1.4, Math.max(0.85, fontScale + dir * .1));
+  document.documentElement.style.setProperty('--fs', fontScale);
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ── SWIPE ──
+let touchStartX = 0, touchStartY = 0;
+document.getElementById('questionWrap').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].clientX;
+  touchStartY = e.changedTouches[0].clientY;
+}, { passive:true });
+document.getElementById('questionWrap').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    if (dx < 0) nextQuestion();
+    else prevQuestion();
+  }
+}, { passive:true });
+
+// ── DRAWER ──
+function openDrawer() { renderDrawerGrid(); document.getElementById('drawerOverlay').classList.add('open'); document.getElementById('navDrawer').classList.add('open'); }
+function closeDrawer(){ document.getElementById('drawerOverlay').classList.remove('open'); document.getElementById('navDrawer').classList.remove('open'); }
+
+function setFilter(f, el) {
+  drawerFilter = f;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderDrawerGrid();
+}
+
+function renderDrawerGrid() {
+  const grid = document.getElementById('drawerGrid');
+  grid.innerHTML = '';
+  qStatus.forEach((status, i) => {
+    if (drawerFilter !== 'all') {
+      if (drawerFilter === 'bookmark' && !bookmarks[i]) return;
+      else if (drawerFilter !== 'bookmark' && status !== drawerFilter) return;
+    }
+    const btn = document.createElement('button');
+    btn.className = 'q-nav-btn';
+    const curIdx = reviewMode ? reviewQueue[reviewIdx] : current;
+    if (i === curIdx) btn.classList.add('nav-current');
+    else if (status !== 'unseen') btn.classList.add('nav-' + status);
+    if (bookmarks[i]) { const dot = document.createElement('span'); dot.className = 'bm-dot'; btn.appendChild(dot); }
+    btn.prepend(document.createTextNode(i + 1));
+    btn.onclick = () => jumpTo(i);
+    grid.appendChild(btn);
+  });
+  document.getElementById('dCorrect').textContent = correct;
+  document.getElementById('dWrong').textContent   = wrong;
+  document.getElementById('dLeft').textContent    = qStatus.filter(s => s === 'unseen').length;
+}
+
+function jumpTo(idx) {
+  closeDrawer();
+  if (!answered && !reviewMode && qStatus[current] === 'unseen') { qStatus[current] = 'skipped'; skipped++; }
+  current = idx;
+  reviewMode = false;
+  document.getElementById('reviewBanner').classList.remove('show');
+  loadQuestion();
+}
+
+// ── END QUIZ ──
+function endQuiz() {
+  stopTimer(); stopTotalTimer();
+  document.getElementById('quizScreen').style.display = 'none';
+  document.getElementById('resultScreen').classList.add('show');
+  document.getElementById('finalScore').textContent   = score;
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('wrongCount').textContent   = wrong;
+  document.getElementById('skippedCount').textContent = skipped;
+  const attempted = correct + wrong;
+  const acc = attempted > 0 ? Math.round(correct / attempted * 100) : 0;
+  document.getElementById('accuracyVal').textContent  = acc + '%';
+  const mm = Math.floor(totalSeconds / 60), ss = totalSeconds % 60;
+  document.getElementById('totalTimeVal').textContent = `${mm}:${ss.toString().padStart(2,'0')}`;
+  document.getElementById('bestStreakVal').textContent = maxStreak;
+  const pct = score / QUESTIONS.length;
+  let trophy = '🏆', title = 'Outstanding!', sub = 'Outstanding performance! 🎉';
+  if (pct < 0.4) { trophy = '📚'; title = 'Keep Practicing'; sub = 'Keep at it — you can do this!'; }
+  else if (pct < 0.7) { trophy = '👍'; title = 'Good Effort!'; sub = 'Good effort! A bit more practice will help.'; }
+  document.getElementById('trophyEmoji').textContent = trophy;
+  document.getElementById('resultTitle').textContent  = title;
+  document.getElementById('resultSub').textContent    = sub;
+  setTimeout(() => { document.getElementById('scoreArc').style.strokeDashoffset = 314.16 * (1 - pct); }, 100);
+  const wrongOnes = qStatus.map((s,i) => s==='wrong' ? i : -1).filter(i => i >= 0);
+  document.getElementById('reviewWrongBtn').style.display = wrongOnes.length ? 'block' : 'none';
+  const bmOnes = bookmarks.map((b,i) => b ? i : -1).filter(i => i >= 0);
+  document.getElementById('reviewBookmarkBtn').style.display = bmOnes.length ? 'block' : 'none';
+}
+
+// ── REVIEW WRONG ──
+function startReview() {
+  reviewQueue = qStatus.map((s,i) => s==='wrong' ? i : -1).filter(i => i >= 0);
+  if (!reviewQueue.length) { showToast('No wrong answers!'); return; }
+  reviewMode = true; reviewIdx = 0;
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('quizScreen').style.display = 'flex';
+  document.getElementById('reviewBanner').classList.add('show');
+  document.getElementById('reviewBannerText').textContent = '📝 Review Mode — Wrong Questions';
+  loadQuestion();
+}
+
+// ── REVIEW BOOKMARKS ──
+function startBookmarkReview() {
+  reviewQueue = bookmarks.map((b,i) => b ? i : -1).filter(i => i >= 0);
+  if (!reviewQueue.length) { showToast('No bookmarks!'); return; }
+  reviewMode = true; reviewIdx = 0;
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('quizScreen').style.display = 'flex';
+  document.getElementById('reviewBanner').classList.add('show');
+  document.getElementById('reviewBannerText').textContent = '🔖 Review Mode — Bookmarked Questions';
+  loadQuestion();
+}
+
+function endReview() {
+  reviewMode = false;
+  document.getElementById('quizScreen').style.display = 'none';
+  document.getElementById('resultScreen').classList.add('show');
+}
+function exitReview() { endReview(); }
+
+// ── SHARE ──
+function shareResult() {
+  const attempted = correct + wrong;
+  const acc = attempted > 0 ? Math.round(correct / attempted * 100) : 0;
+  const mm = Math.floor(totalSeconds / 60), ss = totalSeconds % 60;
+  const text = `📋 MCQ Practice Result\n✅ Score: ${score}/${QUESTIONS.length}\n✓ Correct: ${correct} | ✗ Wrong: ${wrong} | ⏭ Skipped: ${skipped}\n🎯 Accuracy: ${acc}%\n⏱ Time: ${mm}:${ss.toString().padStart(2,'0')}\n🔥 Best Streak: ${maxStreak}\n\nKeep practicing and aim for the top! 💪`;
+  if (navigator.share) {
+    navigator.share({ title:'MCQ Result', text }).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast('Result copied!'))
+      .catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta); showToast('Result copied!');
+      });
+  }
+}
+
+// ── RESTART ──
+function restartQuiz() {
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('scoreArc').style.strokeDashoffset = '314.16';
+  startQuiz();
+}
+
+initApp();
+</script>
+</body>
+</html>
