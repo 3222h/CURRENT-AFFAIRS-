@@ -1,412 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Speedy One Liners · Study Portal</title>
-    <meta name="description" content="Quick, exam-ready revision one-liners by month — built for fast recall." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <style>
-        /* ─── Reset & Variables ─── */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>403 - Access Denied</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
 
-        :root {
-            --bg-base: #0b1120;
-            --bg-card: rgba(17, 25, 45, 0.65);
-            --bg-card-hover: rgba(25, 40, 70, 0.85);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(251, 191, 36, 0.25);
-            --text-main: #f1f5f9;
-            --text-muted: #8896b0;
-            --text-dim: #5a6a85;
-            --accent-primary: #fbbf24;
-            --accent-secondary: #f59e0b;
-            --accent-gradient: linear-gradient(135deg, #fbbf24, #f59e0b);
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.50);
-            --radius-card: 18px;
-            --radius-pill: 50px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --font: 'Inter', system-ui, -apple-system, sans-serif;
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0f19;
+      color: #f8fafc;
+      overflow: hidden;
+      position: relative;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    /* Ambient background shapes to make the blur effect visible */
+    .ambient-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      opacity: 0.55;
+    }
 
-        body {
-            font-family: var(--font);
-            background: var(--bg-base);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
-        }
+    .glow-1 {
+      width: 320px;
+      height: 320px;
+      background: #dc2626;
+      top: 15%;
+      left: 20%;
+    }
 
-        /* ─── Reduced Background Glow Blur ─── */
-        .bg-shape {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(50px); /* Reduced from 140px */
-            z-index: 0;
-            opacity: 0.25;
-            animation: float 28s infinite alternate ease-in-out;
-            pointer-events: none;
-        }
+    .glow-2 {
+      width: 280px;
+      height: 280px;
+      background: #4f46e5;
+      bottom: 15%;
+      right: 20%;
+    }
 
-        .shape-1 {
-            width: 420px;
-            height: 420px;
-            background: var(--accent-primary);
-            top: -140px;
-            left: -100px;
-        }
+    /* Glassmorphism modal card */
+    .access-card {
+      position: relative;
+      z-index: 1;
+      max-width: 420px;
+      width: 90%;
+      padding: 2.25rem 2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
 
-        .shape-2 {
-            width: 480px;
-            height: 480px;
-            background: var(--accent-secondary);
-            bottom: -180px;
-            right: -120px;
-            animation-delay: -8s;
-        }
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1.25rem;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f87171;
+    }
 
-        .shape-3 {
-            width: 300px;
-            height: 300px;
-            background: #fcd34d;
-            top: 45%;
-            left: 55%;
-            animation-delay: -14s;
-            opacity: 0.10;
-        }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f87171;
+      margin-bottom: 0.5rem;
+    }
 
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            50% { transform: translate(40px, 70px) rotate(12deg) scale(1.03); }
-            100% { transform: translate(-30px, 110px) rotate(24deg) scale(0.97); }
-        }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+    }
 
-        /* ─── Layout ─── */
-        .app-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            padding: 2rem 1.5rem 1rem;
-            z-index: 1;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+    p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+    }
 
-        /* ─── Header ─── */
-        .app-header {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-subtle);
-            margin-bottom: 2rem;
-        }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      background: #f8fafc;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        .brand-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 900;
-            color: #0b1120;
-            flex-shrink: 0;
-            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.35);
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .brand-name {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .brand-tagline {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .header-badge {
-            background: rgba(251, 191, 36, 0.10);
-            border: 1px solid rgba(251, 191, 36, 0.15);
-            padding: 0.4rem 1rem;
-            border-radius: var(--radius-pill);
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent-primary);
-            letter-spacing: 0.02em;
-            white-space: nowrap;
-        }
-
-        /* ─── Search ─── */
-        .search-wrap {
-            max-width: 420px;
-            width: 100%;
-            margin: 0 0 2rem 0;
-            position: relative;
-        }
-
-        .search-wrap .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.6rem;
-            border-radius: var(--radius-pill);
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            font-family: var(--font);
-            font-size: 0.95rem;
-            outline: none;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            transition: var(--transition);
-        }
-
-        .search-wrap .search-input:focus {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.20);
-        }
-
-        .search-wrap .search-icon {
-            position: absolute;
-            left: 0.9rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-dim);
-            pointer-events: none;
-        }
-
-        /* ─── Month Grid ─── */
-        .month-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .month-card {
-            position: relative;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-card);
-            padding: 1.5rem 1.25rem;
-            text-decoration: none;
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            overflow: hidden;
-            transition: transform 0.25s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            box-shadow: var(--shadow-card);
-            min-height: 120px;
-        }
-
-        .month-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(251, 191, 36, 0.30);
-            background: var(--bg-card-hover);
-        }
-
-        .month-card .card-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-
-        .month-card .card-action {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--accent-primary);
-            margin-top: auto;
-        }
-
-        /* ─── Centered Access Denied Overlay ─── */
-        #access-denied-screen {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            background: var(--bg-base);
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .denied-card {
-            background: rgba(17, 25, 45, 0.90);
-            border: 1px solid rgba(239, 68, 68, 0.35);
-            border-radius: var(--radius-card);
-            padding: 2.5rem 2rem;
-            max-width: 440px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .denied-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: rgba(239, 68, 68, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ef4444;
-            font-size: 1.8rem;
-        }
-
-        .denied-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #f87171;
-            line-height: 1.4;
-        }
-
-        .denied-sub {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* ─── Responsive ─── */
-        @media (max-width: 768px) {
-            .app-wrapper { padding: 1.25rem 1rem; }
-            .month-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-        }
-        @media (max-width: 480px) {
-            .month-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+  </style>
 </head>
 <body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
 
-    <!-- Background Shapes -->
-    <div class="bg-shape shape-1" aria-hidden="true"></div>
-    <div class="bg-shape shape-2" aria-hidden="true"></div>
-    <div class="bg-shape shape-3" aria-hidden="true"></div>
-
-    <!-- Centered Restricted Access Warning -->
-    <div id="access-denied-screen">
-        <div class="denied-card">
-            <div class="denied-icon">✕</div>
-            <h2 class="denied-title">You are not allowed to access this source</h2>
-            <p class="denied-sub">Access restricted to authorized mobile environments.</p>
-        </div>
+  <div class="access-card">
+    <div class="icon-box">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
     </div>
-
-    <!-- Main Content Application -->
-    <div class="app-wrapper" id="main-app">
-        <header class="app-header">
-            <a href="#" class="brand">
-                <div class="brand-icon">⚡</div>
-                <div class="brand-text">
-                    <span class="brand-name">Speedy One Liners</span>
-                    <span class="brand-tagline">Exam-Ready Recall Portal</span>
-                </div>
-            </a>
-            <span class="header-badge">Online Portal</span>
-        </header>
-
-        <div class="search-wrap">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="search-bar" placeholder="Filter revision sets..." />
-        </div>
-
-        <main class="month-grid" id="grid">
-            <div class="month-card">
-                <div class="card-title">January Revision</div>
-                <div class="card-action">Open Module &rarr;</div>
-            </div>
-            <div class="month-card">
-                <div class="card-title">February Revision</div>
-                <div class="card-action">Open Module &rarr;</div>
-            </div>
-            <div class="month-card">
-                <div class="card-title">March Revision</div>
-                <div class="card-action">Open Module &rarr;</div>
-            </div>
-            <div class="month-card">
-                <div class="card-title">April Revision</div>
-                <div class="card-action">Open Module &rarr;</div>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        (function enforceAccess() {
-            const ua = navigator.userAgent;
-
-            // Target Device / OS checks
-            const isAndroid = /Android/i.test(ua);
-            const isLinux = /Linux/i.test(ua);
-            const isMobile = /Mobile/i.test(ua);
-
-            // Forward-compatible Chrome version extraction (matches Chrome/150+ or any valid version)
-            const chromeMatch = ua.match(/Chrome\/(\d+)/i);
-            const chromeVersion = chromeMatch ? parseInt(chromeMatch[1], 10) : 0;
-
-            // Verified device check: Android on Linux, running Chrome Mobile (v50+)
-            const isAuthorized = isAndroid && isLinux && isMobile && (chromeVersion >= 50);
-
-            const deniedScreen = document.getElementById('access-denied-screen');
-            const mainApp = document.getElementById('main-app');
-
-            if (!isAuthorized) {
-                if (mainApp) mainApp.style.display = 'none';
-                if (deniedScreen) deniedScreen.style.display = 'flex';
-            } else {
-                if (deniedScreen) deniedScreen.style.display = 'none';
-                if (mainApp) mainApp.style.display = 'flex';
-            }
-        })();
-    </script>
+    <div class="tag">403 Forbidden</div>
+    <h1>Access Restricted</h1>
+    <p>You are not permitted to access this resource. Please verify your credentials or contact your administrator.</p>
+    <button class="btn" onclick="window.history.back()">Go Back</button>
+  </div>
 </body>
 </html>
